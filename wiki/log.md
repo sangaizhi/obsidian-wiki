@@ -1,0 +1,21 @@
+## [2026-05-12] ingest | raw/ai/agent → wiki Agent 知识层
+
+- 新建来源摘要页：
+  - `wiki/sources/来源_AI概念脉络.md`
+  - `wiki/sources/来源_Agent的记忆.md`
+  - `wiki/sources/来源_上下文工程.md`
+  - `wiki/sources/来源_Agent的规划能力.md`
+  - `wiki/sources/来源_工作流_vs_Agent.md`
+- 新建概念页：
+  - `wiki/concepts/概念_AI_Agent.md`
+  - `wiki/concepts/概念_Agent记忆.md`
+  - `wiki/concepts/概念_上下文工程.md`
+  - `wiki/concepts/概念_Agent规划能力.md`
+- 新建比较页：`wiki/comparisons/工作流_vs_Agent.md`
+- 新建总览页：`wiki/overview/主题_Agent入门综述.md`
+- 更新索引：`wiki/index.md`
+- 跳过空来源：
+  - `raw/ai/agent/1. 什么要懂Agent.md`
+  - `raw/ai/agent/2. 什么是AI Agent.md`
+  - `raw/ai/agent/3. Agent的本质.md`
+  - `raw/ai/agent/4. Agent的工具马甲.md`
