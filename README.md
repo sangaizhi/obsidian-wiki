@@ -143,18 +143,6 @@
 核心思想：
 > "The wiki is a persistent, compounding artifact" — 让 LLM 处理人类不擅长的记账工作，让知识真正复利增长。
 
-## 👤 关于作者
-
-**Blink**
-- 18 年笔记软件老玩家
-- AI + 知识管理实践者
-- 10 年互联网产品经理
-
-<img src="Attachments/539.jpg" width="224" alt="539.jpg">
-
-## 📄 许可证
-
-MIT License
 
 ---
 
