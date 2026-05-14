@@ -46,10 +46,8 @@ Agent 可以拆成四个关键模块：
 
 ## 待补充问题
 
-- 工具调用与权限控制还缺少独立概念页。
 - 多 Agent 协同与子代理调度还缺少独立概念页。
-- Skill / SOP 封装还缺少独立概念页。
-- `raw/ai/agent/1. 什么要懂Agent.md`、`raw/ai/agent/2. 什么是AI Agent.md`、`raw/ai/agent/3. Agent的本质.md`、`raw/ai/agent/4. Agent的工具马甲.md` 当前为空，后续有内容后可继续 Ingest。
+- `raw/ai/agent/1. 什么要懂Agent.md`、`raw/ai/agent/2. 什么是AI Agent.md`、`raw/ai/agent/3. Agent的本质.md` 当前为空，后续有内容后可继续 Ingest。
 
 ## 关联来源
 

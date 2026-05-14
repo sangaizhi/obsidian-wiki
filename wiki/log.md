@@ -19,3 +19,41 @@
   - `raw/ai/agent/2. 什么是AI Agent.md`
   - `raw/ai/agent/3. Agent的本质.md`
   - `raw/ai/agent/4. Agent的工具马甲.md`
+
+## [2026-05-14] query | 新建 wiki/overview/知识图谱.md
+
+- 新建知识图谱页：`wiki/overview/知识图谱.md`
+  - Mermaid 全景图展示概念关系
+  - 概念关系详解表（8 组核心关系）
+  - 信息流路径图
+  - 覆盖状态矩阵（已覆盖 7 项 / 待补充 3 项）
+- 更新索引：`wiki/index.md` 新增「知识图谱」条目
+
+## [2026-05-14] ingest | raw/OpenClaw橙皮书_extracted.txt → wiki
+
+- 新建来源摘要页：`wiki/sources/来源_OpenClaw橙皮书.md`
+- 新建实体页：`wiki/entities/项目_OpenClaw.md`
+- 新建概念页：
+  - `wiki/concepts/概念_工具调用.md`（填补工具调用缺口）
+  - `wiki/concepts/概念_Skill系统.md`（填补 Skill/SOP 缺口）
+- 更新总览：`wiki/overview/主题_Agent入门综述.md` — 移除已完成的待补充项
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 覆盖状态更新（已覆盖 11 项 / 待补充 1 项）
+- 更新索引：`wiki/index.md` 新增 3 个条目（工具调用、Skill系统、OpenClaw项目）
+
+## [2026-05-14] ingest | raw/抖音/2026-05-14/* → wiki
+
+- 新建来源摘要页（5 个）：
+  - `wiki/sources/来源_Agent的7种架构.md`
+  - `wiki/sources/来源_ManagedAgents.md`
+  - `wiki/sources/来源_CLAUDE优化指南.md`
+  - `wiki/sources/来源_Skill架构优化.md`
+  - `wiki/sources/来源_Obsidian攻略.md`
+- 新建概念页（2 个）：
+  - `wiki/concepts/概念_Agent架构模式.md` — 7 种主流 Agent 架构
+  - `wiki/concepts/概念_ManagedAgents.md` — Anthropic 生产级 Agent 架构
+- 新建实体页：`wiki/entities/插件_Claudian.md`
+- 更新现有概念页（2 个）：
+  - `wiki/concepts/概念_Skill系统.md` — 新增分层加载、Gating、元数据瘦身
+  - `wiki/concepts/概念_上下文工程.md` — 新增 CLAUDE.md 三步优化法最佳实践
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 覆盖状态更新（已覆盖 15 项 / 待补充 1 项）
+- 更新索引：`wiki/index.md` 新增 6 个条目
