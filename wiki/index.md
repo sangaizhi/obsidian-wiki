@@ -14,6 +14,9 @@
 - [[concepts/概念_Skill系统|Skill 系统]]：将固定流程封装为可复用的标准化模块，使 Agent 具备自我扩展能力。
 - [[concepts/概念_Agent架构模式|Agent 架构模式]]：7 种主流 Agent 架构（ReAct、Reflection、Tool Use、Planning、Multi-Agent、Memory-Augmented、Human-in-the-Loop）。
 - [[concepts/概念_ManagedAgents|Managed Agents]]：Anthropic 生产级 Agent 架构，大脑与双手解耦 + Session 持久化 + 零信任沙箱。
+- [[concepts/概念_Harness工程|Harness Engineering]]：把大模型纳入工程体系的控制面，通过约束、验证和恢复机制让 Agent 从玩具变成生产力。
+- [[concepts/概念_FunctionCalling|Function Calling]]：LLM 通过函数声明自动调用外部工具的机制，Schema 设计与错误处理实践。
+- [[concepts/概念_Agent编排|Agent 编排]]：组织、协调、管理多个 Agent 协同工作的工程方法，填补多 Agent 协同缺口。
 
 ## 比较
 
@@ -41,3 +44,6 @@
 - [[sources/来源_CLAUDE优化指南|来源：CLAUDE.md 优化]]：根文件做薄 + 按关注点拆分 + /memory 验收。
 - [[sources/来源_Skill架构优化|来源：Skill 架构优化]]：元数据瘦身、分层加载、Skill Gating、上下文压缩。
 - [[sources/来源_Obsidian攻略|来源：Obsidian 攻略]]：新手第一天必做 7 件事、同步方案、AI 集成。
+- [[sources/来源_Harness工程|来源：Harness Engineering]]：大模型纳入工程体系的控制面设计。
+- [[sources/来源_FunctionCalling|来源：Function Calling]]：原理、翻车场景、Schema 设计、面试考点。
+- [[sources/来源_企业Agent编排|来源：企业 Agent 编排]]：任务/状态/工具/上下文四大编排维度。

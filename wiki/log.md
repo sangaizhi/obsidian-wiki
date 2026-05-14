@@ -57,3 +57,18 @@
   - `wiki/concepts/概念_上下文工程.md` — 新增 CLAUDE.md 三步优化法最佳实践
 - 更新知识图谱：`wiki/overview/知识图谱.md` — 覆盖状态更新（已覆盖 15 项 / 待补充 1 项）
 - 更新索引：`wiki/index.md` 新增 6 个条目
+
+## [2026-05-14] ingest | raw/知乎 + raw/douyin → wiki
+
+- 新建来源摘要页（3 个）：
+  - `wiki/sources/来源_Harness工程.md`
+  - `wiki/sources/来源_FunctionCalling.md`
+  - `wiki/sources/来源_企业Agent编排.md`
+- 新建概念页（3 个）：
+  - `wiki/concepts/概念_Harness工程.md` — Agent 治理与控制面
+  - `wiki/concepts/概念_FunctionCalling.md` — 工具调用技术机制
+  - `wiki/concepts/概念_Agent编排.md` — 填补多 Agent 协同缺口
+- 更新现有概念页（1 个）：
+  - `wiki/concepts/概念_工具调用.md` — 新增 Function Calling 关联
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 3 个概念节点，覆盖状态 19/19 🎉
+- 更新索引：`wiki/index.md` 新增 6 个条目
