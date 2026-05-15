@@ -1,0 +1,5 @@
+- 1. [HashSet](../Java/Collection/HashSet.md)
+- 2. [HashMap](../Java/Collection/HashMap.md)
+- 3. [TreeMap](../Java/Collection/TreeMap.md)
+- 4. [SortedMap](../Java/Collection/SortedMap.md)
+- 5. [List、Set和Map的比较](../Java/Collection/List-Set-Map-Compare.md)

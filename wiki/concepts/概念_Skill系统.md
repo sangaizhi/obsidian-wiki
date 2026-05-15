@@ -12,7 +12,8 @@ sources:
   - "raw/抖音/2026-05-14/抖音-视频-20260514-Skill系统架构优化.md"
   - "raw/知乎/2026-05-14/深入源码：Hermes Agent 如何实现 Self-Improving.md"
   - "raw/知乎/2026-05-14/日志诊断 Skill：用 AI + MCP 一键解决BUG｜得物技术.md"
-updated: "2026-05-14"
+  - "raw/抖音/2026-05-15/抖音-视频-20260515-Perplexity如何写Skill.md"
+updated: "2026-05-15"
 ---
 
 # 概念：Skill 系统
@@ -212,6 +213,85 @@ Skill 工作流：traceId → 分页日志拉取 → 代码检索 → 根因分�
 | Skill 加载 | 全量塞入上下文 | 渐进式按需加载 |
 | 学习能力 | 不会从工作中学到东西 | 每次踩坑都在加固 |
 | 维护方式 | 手动更新 | `fuzzy_find_and_replace` 自动 patch |
+
+## Perplexity Skill 设计六步框架
+
+Perplexity 官方论文《Designing, Refining, and Maintaining Agent Skills at Perplexity》提出了完整的 Skill 设计方法论，核心思想是 **"每个 Skill 都要收上下文税，必须让收益大于税收"**。
+
+### ① 理解本质：Context Packaging
+
+> ❌ 误区：Skill = 把文档放进 prompt
+> ✅ 正确定义：Skill = 面向模型的运行时上下文模块
+
+传统系统与 Agent 系统的映射：
+
+| 传统系统 | Agent 系统 |
+|---------|-----------|
+| Function = 能力 | Skill = 能力载体 |
+| Module = 代码组织 | Context = 资源 |
+| API Route = 接口 | Description = Router |
+| Unit Test = 质量保障 | Eval = 行为保障 |
+
+### ② 从 Prompt Engineering 到 Context Engineering
+
+传统一次性塞进 System Prompt 导致 Context 膨胀、Attention 分散、指令冲突。Context Engineering 的思想是：**上下文应该像内存一样被管理。**
+
+### ③ Progressive Loading（渐进式加载）
+
+三层加载架构：
+
+```
+第一层：Skill Index           (< 100 tokens)
+├── name, description
+└── 作用：Skill Routing（决定是否加载）
+
+第二层：SKILL.md              (~ 5000 tokens)
+├── 工作流、约束、Gotchas、示例
+└── 作用：真正加载时读取核心规则
+
+第三层：Heavy Assets           (按需读取)
+├── references/、examples/、assets/
+└── 作用：不会一开始进入上下文
+```
+
+### ④ Description = Router（最重要的一句话）
+
+- ❌ 错误写法：`This skill helps with React UI.`（面向人，描述功能）
+- ✅ 正确写法：`Load when user asks for dashboard-style React admin UI.`（面向路由，描述触发条件）
+
+### ⑤ Skill Tree：分层路由
+
+反面案例：1945 个税法 Skill 平铺 → 路由效果极差。解决方案是像 B-Tree 一样分层（Federal / State / International）。**模型无法稳定从大量候选中选择，必须分层检索、多级召回。**
+
+### ⑥ Gotchas > 流程
+
+> **模型通常知道流程，但不知道坑。**
+
+反例/Gotchas（"不要修改 migration 文件"、"先 dry-run"、"不要覆盖 generated code"）直接决定稳定性、安全性和工程正确性。
+
+### Eval-Driven Development
+
+Skill 开发第一步不是写 Skill，是先写 Eval：
+
+| Eval 类型 | 作用 |
+|-----------|------|
+| Routing Eval | 是否正确加载 |
+| File Read Eval | 是否读取正确文件 |
+| Progressive Loading Eval | 是否按需加载 |
+| End-to-End Eval | 最终任务质量 |
+
+### Append-Mostly 维护
+
+Skill 不是频繁改规则，而是**持续追加失败经验**。每次踩坑就追加一条 Gotcha——这与 OpenClaw self-improving 和 Hermes Agent 的 self-patching 一脉相承。
+
+### 与 OpenClaw 的对齐
+
+| Perplexity | OpenClaw |
+|-----------|---------|
+| Skill Index | ClawHub skill 注册 |
+| Progressive Loading | skill 按需注入 |
+| Append-Mostly | self-improving skill learnings |
+| Description is Router | skill trigger 设计 |
 
 ## 关联页面
 

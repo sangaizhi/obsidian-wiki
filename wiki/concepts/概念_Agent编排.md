@@ -9,7 +9,8 @@ tags:
 summary: "Agent 编排是组织、协调、管理多个 Agent 协同工作的工程方法，核心维度包括任务、状态、工具和上下文编排。"
 sources:
   - "raw/douyin/2026-05-14/抖音-视频-20260514-企业Agent编排.md"
-updated: "2026-05-14"
+  - "raw/抖音/2026-05-15/抖音-视频-20260515-多Agent协同设计详解.md"
+updated: "2026-05-15"
 ---
 
 # 概念：Agent 编排
@@ -112,6 +113,51 @@ flowchart TD
 
 编排是 [[concepts/概念_ManagedAgents|Managed Agents]] 中 Harness 思想在宏观层面的扩展——从约束单个 Agent 到协调一群 Agent。
 
+## 多 Agent 协同设计：分工 × 通信 × 仲裁
+
+Nova-AI 提出的多 Agent 设计框架可概括为：**多 Agent 不是堆数量，是分工 + 通信 + 仲裁三件事。**
+
+### ① 分工：Supervisor 模式
+
+| 角色 | 类比 | 职责 |
+|------|------|------|
+| **主 Agent** | 项目经理 | 只调度，不干活 |
+| **子 Agent** | 专科员工 | 只做一件事，做到精 |
+
+**真实案例**：教育产品 4-Agent 架构（路由分发 → 答疑 / 批改 / 推荐），月活百万级。
+
+### ② 消息通信：3 种模式
+
+| 模式 | 适用场景 | 限制 |
+|------|---------|------|
+| **共享内存** | 小 demo | ≤ 3 个 Agent |
+| **消息总线** | 生产环境首选 | LangGraph / CrewAI 同款 |
+| **状态机** | 合规场景 | 金融/医疗/法律 |
+
+### ③ 冲突解决：3 种策略
+
+| 策略 | 适用场景 |
+|------|---------|
+| **主 Agent 仲裁** | 业务场景默认 |
+| **投票机制** | 代码评审/内容审核 |
+| **优先级规则** | 安全 Agent 否决一切 |
+
+### 与编排框架的对照
+
+| 设计维度 | 对应业界实现 |
+|---------|------------|
+| Supervisor 模式 | LangGraph `StateGraph` + `Supervisor` 节点 |
+| 消息总线 | CrewAI `Process.sequential` / `Process.hierarchical` |
+| 共享内存 | AutoGen `ConversableAgent` 即时对话 |
+| 状态机 | LangGraph `StateGraph` 状态流转控制 |
+
+### 工程考量
+
+- **数量级**：3 个以内共享内存，10+ 必须消息总线，50+ 需分层路由
+- **容错**：子 Agent 超时/垃圾数据的重试降级策略
+- **可观测性**：多 Agent 调试比单 Agent 难一个数量级，需完整 trace 链路
+- **成本**：每个 Agent 调用 LLM 成本线性累加，需平衡质量与 token 消耗
+
 ## 关联页面
 
 - [[concepts/概念_ManagedAgents|Managed Agents]]
@@ -120,3 +166,4 @@ flowchart TD
 - [[concepts/概念_上下文工程|上下文工程]]
 - [[concepts/概念_AI_Agent|AI Agent]]
 - [[sources/来源_企业Agent编排|来源：企业 Agent 编排]]
+- [[sources/来源_多Agent协同设计|来源：多 Agent 协同设计]]

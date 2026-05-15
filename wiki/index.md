@@ -27,10 +27,70 @@
 
 - [[overview/知识图谱|知识图谱]]：AI Agent 知识体系的完整关系图谱，展示概念间依赖、组合与决策关系。
 
+## 后端技术
+
+### 总览
+
+- [[overview/主题_Java后端技术栈综述|Java 后端技术栈综述]]：以 Java 基础、Spring 框架、RabbitMQ/Kafka 消息中间件组织 raw/笔记 新资料。
+
+### 技术实体
+
+- [[entities/技术_Java|Java]]：后端基础技术栈，覆盖集合、并发、NIO、JVM 等核心模块。
+- [[entities/技术_Spring|Spring]]：Java 后端应用框架体系，覆盖 IoC/DI、MVC、Security、Social 和 Cloud Config。
+- [[entities/技术_RabbitMQ|RabbitMQ]]：基于 AMQP 的消息队列中间件，覆盖路由、可靠投递、消费治理和 Spring 集成。
+- [[entities/技术_Kafka|Kafka]]：高吞吐分布式日志与消息系统，覆盖 Topic、Partition、副本、索引、offset 与消费组。
+
+### Java 基础
+
+- [[concepts/概念_Java集合框架|Java 集合框架]]：用 List、Set、Map 三类抽象组织常见容器。
+- [[concepts/概念_HashMap|HashMap]]：基于哈希桶数组，通过链表和红黑树处理哈希冲突的 Map 实现。
+- [[concepts/概念_有序Map|有序 Map]]：通过自然顺序或 Comparator 排序，TreeMap 提供红黑树有序映射。
+- [[concepts/概念_Java并发基础|Java 并发基础]]：线程生命周期、并发并行、启动终止和共享状态治理。
+- [[concepts/概念_Java线程通信|Java 线程通信]]：volatile、synchronized、等待通知和 join 等线程协作方式。
+- [[concepts/概念_volatile|volatile]]：保证共享变量可见性的轻量级同步机制。
+- [[concepts/概念_synchronized|synchronized]]：通过对象监视器保护共享数据临界区访问。
+- [[concepts/概念_Executor框架|Executor 框架]]：将任务提交与线程调度解耦的 Java 并发执行抽象。
+- [[concepts/概念_Java线程池|Java 线程池]]：通过线程复用、任务队列和拒绝策略控制并发执行。
+- [[concepts/概念_Java_NIO|Java NIO]]：以 Buffer、Channel、Selector 为核心的非阻塞 IO 编程模型。
+- [[concepts/概念_JVM类加载|JVM 类加载]]：类从字节码进入虚拟机到完成初始化的阶段与加载器体系。
+- [[concepts/概念_JVM运行时内存|JVM 运行时内存]]：程序计数器、虚拟机栈、堆、方法区等运行时区域。
+- [[concepts/概念_Java垃圾回收|Java 垃圾回收]]：可达性判断、回收算法和垃圾收集器组合。
+
+### Spring 与安全
+
+- [[concepts/概念_Spring核心思想|Spring 核心思想]]：OOP、BOP、AOP、IoC、DI/DL 和模块化架构。
+- [[concepts/概念_手写Spring框架|手写 Spring 框架]]：用简化实现拆解 IoC、DI、MVC 九大组件和请求分发流程。
+- [[concepts/概念_SpringSecurity|Spring Security]]：通过过滤器链和拦截器组织 Web 请求认证、身份上下文和授权。
+- [[concepts/概念_OAuth2|OAuth2]]：第三方应用不获取用户密码也能获得有限资源访问权限的授权协议。
+- [[concepts/概念_SpringSocial|Spring Social]]：将 OAuth2 第三方登录流程封装进 Spring Security 过滤器链。
+- [[concepts/概念_SpringCloudConfig|Spring Cloud Config]]：用 Config Server 和 Client 做微服务集中配置管理。
+
+### 消息中间件
+
+- [[concepts/概念_RabbitMQ基础模型|RabbitMQ 基础模型]]：Exchange、Queue、Binding、Message、VirtualHost、Channel 等消息流转元素。
+- [[concepts/概念_RabbitMQ可靠性投递|RabbitMQ 可靠性投递]]：Confirm、Return、消息落库、备份交换机等降低丢失风险。
+- [[concepts/概念_RabbitMQ消费端治理|RabbitMQ 消费端治理]]：ACK/NACK、限流、TTL、死信队列和幂等消费。
+- [[concepts/概念_RabbitMQ与Spring集成|RabbitMQ 与 Spring 集成]]：Spring AMQP、RabbitTemplate、监听容器和消息转换器。
+- [[concepts/概念_Kafka基础与高可用|Kafka 基础与高可用]]：Topic、Partition、Broker、Segment、索引、Consumer Group 和副本同步。
+
+### 来源摘要
+
+- [[sources/来源_Java集合框架笔记|来源：Java 集合框架笔记]]：List、Set、Map、HashMap、HashSet、SortedMap 与 TreeMap。
+- [[sources/来源_Java并发编程笔记|来源：Java 并发编程笔记]]：线程、通信、volatile、synchronized、Executor 与线程池。
+- [[sources/来源_Java_NIO笔记|来源：Java NIO 笔记]]：Buffer、Channel、Selector 与非阻塞 IO。
+- [[sources/来源_JVM笔记|来源：JVM 笔记]]：类加载、类加载器、运行时数据区、垃圾回收算法与收集器。
+- [[sources/来源_Spring编程与手写框架笔记|来源：Spring 编程与手写框架笔记]]：Spring 思想、IoC/DI、MVC 与手写框架。
+- [[sources/来源_SpringSecurity与OAuth笔记|来源：Spring Security 与 OAuth 笔记]]：Security 过滤器、拦截器、OAuth2 与 Spring Social。
+- [[sources/来源_SpringCloudConfig笔记|来源：Spring Cloud Config 笔记]]：集中配置的使用场景与基础原理。
+- [[sources/来源_RabbitMQ笔记|来源：RabbitMQ 笔记]]：AMQP 模型、路由、可靠投递、消费治理和 Spring 集成。
+- [[sources/来源_Kafka面试题|来源：Kafka 面试题]]：Topic、Partition、Broker、副本、索引、offset 与消费组。
+
 ## 实体
 
 - [[entities/项目_OpenClaw|OpenClaw 项目]]：开源 AI Agent 平台，280K+ GitHub Stars，三层架构，支持 20+ 消息渠道。
 - [[entities/项目_HermesAgent|Hermes Agent 项目]]：自进化 AI Agent，106K+ GitHub Stars，实现 Memory/Skill/Nudge Engine 三子系统闭环。
+- [[entities/项目_ClaudeCode|Claude Code 项目]]：Anthropic 官方 CLI 编程 Agent，动态 System Prompt + 三层工具架构。
+- [[entities/工具_Superpowers|Superpowers 工具]]：开源 AI 编程工作流插件，强制执行 TDD，适配 Claude Code/Codex/Gemini 等。
 - [[entities/插件_Claudian|Claudian 插件]]：Obsidian 侧边栏 AI 编程代理，支持行内编辑和 Plan Mode。
 
 ## 来源摘要
@@ -52,6 +112,10 @@
 - [[sources/来源_SpecCoding实战|来源：Spec Coding 实战]]：得物技术基于 Claude Code 的规格驱动编码实战复盘。
 - [[sources/来源_日志诊断Skill|来源：日志诊断 Skill]]：MCP 日志平台 + Skill 模式实现 Bug 定位全自动闭环。
 - [[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]：Agent 自我进化闭环的三个子系统和设计哲学。
+- [[sources/来源_PerplexitySkill设计|来源：Perplexity Skill 设计]]：Perplexity 论文解读，Skill 本质是上下文封装，六步设计框架。
+- [[sources/来源_Superpowers赋能|来源：Superpowers 赋能]]：开源 AI 编程工作流插件，强制执行 TDD，子代理驱动开发。
+- [[sources/来源_多Agent协同设计|来源：多 Agent 协同设计]]：分工 + 通信 + 仲裁三维度，AI PM 面试实战。
+- [[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]]：万字长文分析 System Prompt 组织、工具设计哲学、CLAUDE.md 注入机制。
 
 ## 生活
 

@@ -90,3 +90,53 @@
   - `wiki/concepts/概念_Harness工程.md` — 新增 Spec Coding 三层规范体系实践
 - 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Spec Coding/Hermes Agent 节点，覆盖状态 22/22
 - 更新索引：`wiki/index.md` 新增 5 个条目（SpecCoding、HermesAgent、3 个来源）
+
+## [2026-05-15] ingest | raw/抖音/2026-05-15 → wiki
+
+- 新建来源摘要页（3 个）：
+  - `wiki/sources/来源_PerplexitySkill设计.md`
+  - `wiki/sources/来源_Superpowers赋能.md`
+  - `wiki/sources/来源_多Agent协同设计.md`
+- 新建实体页：`wiki/entities/工具_Superpowers.md`（开源 TDD 编程工作流插件）
+- 更新现有概念页（2 个）：
+  - `wiki/concepts/概念_Skill系统.md` — 新增 Perplexity Skill 设计六步框架（Context Packaging、Progressive Loading、Description=Router、Gotchas、Eval-Driven、Append-Mostly）
+  - `wiki/concepts/概念_Agent编排.md` — 新增多 Agent 协同设计（分工/通信/仲裁三维度、Supervisor 模式、消息模式、冲突策略）
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Perplexity Skill Design、Superpowers 节点，覆盖状态 25/25
+- 更新索引：`wiki/index.md` 新增 4 个条目（Superpowers 实体 + 3 个来源）
+
+## [2026-05-15] ingest | raw/知乎/2026-05-15 → wiki
+
+- 新建来源摘要页：`wiki/sources/来源_ClaudeCode架构分析.md`
+- 新建实体页：`wiki/entities/项目_ClaudeCode.md`（Anthropic 官方 CLI 编程 Agent）
+- 更新现有概念页（2 个）：
+  - `wiki/concepts/概念_工具调用.md` — 新增 Claude Code 三层工具架构设计哲学（高/中/低层搭配、渐进式信息披露）
+  - `wiki/concepts/概念_上下文工程.md` — 新增 System Prompt 动态组装、CLAUDE.md system-reminder 注入机制
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Claude Code 节点，覆盖状态 26/26
+- 更新索引：`wiki/index.md` 新增 2 个条目（ClaudeCode 实体 + 来源）
+
+## [2026-05-15] ingest | raw/笔记 → wiki Java 后端知识层
+
+- 按 `TheSchema.md` 边界处理：`raw/` 只读，只创建和更新 `wiki/` 页面。
+- 新建总览页（1 个）：
+  - `wiki/overview/主题_Java后端技术栈综述.md`
+- 新建来源摘要页（9 个）：
+  - `wiki/sources/来源_Java集合框架笔记.md`
+  - `wiki/sources/来源_Java并发编程笔记.md`
+  - `wiki/sources/来源_Java_NIO笔记.md`
+  - `wiki/sources/来源_JVM笔记.md`
+  - `wiki/sources/来源_Spring编程与手写框架笔记.md`
+  - `wiki/sources/来源_SpringSecurity与OAuth笔记.md`
+  - `wiki/sources/来源_SpringCloudConfig笔记.md`
+  - `wiki/sources/来源_RabbitMQ笔记.md`
+  - `wiki/sources/来源_Kafka面试题.md`
+- 新建技术实体页（4 个）：
+  - `wiki/entities/技术_Java.md`
+  - `wiki/entities/技术_Spring.md`
+  - `wiki/entities/技术_RabbitMQ.md`
+  - `wiki/entities/技术_Kafka.md`
+- 新建概念页（24 个）：
+  - Java 基础：`概念_Java集合框架`、`概念_HashMap`、`概念_有序Map`、`概念_Java并发基础`、`概念_Java线程通信`、`概念_volatile`、`概念_synchronized`、`概念_Executor框架`、`概念_Java线程池`、`概念_Java_NIO`、`概念_JVM类加载`、`概念_JVM运行时内存`、`概念_Java垃圾回收`
+  - Spring 与安全：`概念_Spring核心思想`、`概念_手写Spring框架`、`概念_SpringSecurity`、`概念_OAuth2`、`概念_SpringSocial`、`概念_SpringCloudConfig`
+  - 消息中间件：`概念_RabbitMQ基础模型`、`概念_RabbitMQ可靠性投递`、`概念_RabbitMQ消费端治理`、`概念_RabbitMQ与Spring集成`、`概念_Kafka基础与高可用`
+- 更新索引：`wiki/index.md` 新增「后端技术」分类，建立总览、技术实体、概念和来源摘要之间的连接。
+- 跳过：空文件、`target/`、`out/`、`bin/`、`src/` 构建/源码目录、xmind/vsdx/图片等二进制资产未单独生成页面。

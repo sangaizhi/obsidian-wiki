@@ -1,0 +1,18 @@
+spring:
+  rabbitmq:
+    addresses: 129.211.100.215:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        ## 消息签收模式：手动签收，保证消息的可靠性送达，或者消息端消费失败的时候可以做重回队列，根据业务记录日志等处理
+        acknowledge-mode: manual
+        ## 最小监听消息的线程数
+        concurrency: 5
+        ## 最大监听消息的线程数
+        max-concurrency: 10
+  application:
+    name: imooc-spring-boot-consumer
+server:
+  port: 8081
