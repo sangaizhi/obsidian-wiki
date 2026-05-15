@@ -67,8 +67,26 @@
 - 新建概念页（3 个）：
   - `wiki/concepts/概念_Harness工程.md` — Agent 治理与控制面
   - `wiki/concepts/概念_FunctionCalling.md` — 工具调用技术机制
-  - `wiki/concepts/概念_Agent编排.md` — 填补多 Agent 协同缺口
-- 更新现有概念页（1 个）：
-  - `wiki/concepts/概念_工具调用.md` — 新增 Function Calling 关联
-- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 3 个概念节点，覆盖状态 19/19 🎉
 - 更新索引：`wiki/index.md` 新增 6 个条目
+
+## [2026-05-14] ingest | raw/小红书 → wiki
+
+- 新建来源摘要页：`wiki/sources/来源_月子中心vs月嫂.md`
+- 新建比较页：`wiki/comparisons/月子中心_vs_月嫂.md`
+- 更新索引：`wiki/index.md` 新增「生活 > 育儿」分类及 2 个条目
+- 注：此为 wiki 首个非 AI 主题的内容，索引新增「生活」分类
+
+## [2026-05-14] ingest | raw/知乎/2026-05-14 (第二批) → wiki
+
+- 新建来源摘要页（3 个）：
+  - `wiki/sources/来源_SpecCoding实战.md`
+  - `wiki/sources/来源_日志诊断Skill.md`
+  - `wiki/sources/来源_HermesAgent.md`
+- 新建概念页：`wiki/concepts/概念_SpecCoding.md`（规格驱动编码方法论）
+- 新建实体页：`wiki/entities/项目_HermesAgent.md`（自进化 Agent）
+- 更新现有概念页（3 个）：
+  - `wiki/concepts/概念_Skill系统.md` — 新增 Self-Improving Skills、MCP+Skill 组合模式
+  - `wiki/concepts/概念_工具调用.md` — 新增 MCP 实战案例（日志平台 MCP）
+  - `wiki/concepts/概念_Harness工程.md` — 新增 Spec Coding 三层规范体系实践
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Spec Coding/Hermes Agent 节点，覆盖状态 22/22
+- 更新索引：`wiki/index.md` 新增 5 个条目（SpecCoding、HermesAgent、3 个来源）

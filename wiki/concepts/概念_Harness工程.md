@@ -9,6 +9,7 @@ tags:
 summary: "Harness Engineering 是把大模型纳入工程体系的控制面，通过约束、验证和恢复机制让 Agent 从玩具变成生产力。"
 sources:
   - "raw/知乎/2026-05-14/Harness工程详解.md"
+  - "raw/知乎/2026-05-14/AI编程能力边界探索：基于 Claude Code 的 Spec Coding 项目实战｜得物技术.md"
 updated: "2026-05-14"
 ---
 
@@ -98,6 +99,27 @@ Harness Engineering 与其他概念的关系：
 - **Harness → 上下文工程**：上下文装配策略、最小上下文清单是 Harness 的一部分
 - **Harness → 工具调用**：Checkerpoint、Evaluator 沙盒是工具调用的安全护栏
 - **Harness → Agent 编排**：编排是 Harness 在宏观层面的扩展
+
+## 实践案例：Spec Coding 三层规范体系
+
+Spec Coding（规格驱动编码）是 Harness 在开发流程层面的具体实践。得物技术团队通过三层规范体系实现了对 AI 编码产出的有效约束：
+
+### 三层规范结构
+
+| 层次 | 定位 | 解决的问题 | 对应 Harness 原则 |
+|------|------|-----------|-----------------|
+| **约束层** `.claude/rules/` | 告诉 AI「禁止什么、必须怎样」 | 规范真空导致的不一致 | 前置验证 + 物理门禁 |
+| **示范层** `.claude/code-design/` | 告诉 AI「标准产出长什么样」 | 符合规则但不够地道的代码 | 最小真相源（标准模板作为真相源） |
+| **视觉层** `.claude/ui-design/` | 告诉 AI「页面应该长什么样」 | 纯文字描述与设计意图的偏差 | 上下文装配（视觉上下文补充） |
+
+### 实际效果
+
+- 205 个文件保持高度一致的代码风格和命名规范
+- 接口命名统一（fetch{Name}Api 格式）、目录分层被正确遵守
+- 提供 HTML 设计稿后，AI 生成的 UI 与设计意图吻合度明显提升
+- 规范文件只是「约束」而非「能力」— 示范层和视觉层是不可或缺的补充
+
+详见 [[concepts/概念_SpecCoding|Spec Coding]] 和 [[sources/来源_SpecCoding实战|来源：Spec Coding 实战]]。
 
 ## 关联页面
 

@@ -17,6 +17,7 @@
 - [[concepts/概念_Harness工程|Harness Engineering]]：把大模型纳入工程体系的控制面，通过约束、验证和恢复机制让 Agent 从玩具变成生产力。
 - [[concepts/概念_FunctionCalling|Function Calling]]：LLM 通过函数声明自动调用外部工具的机制，Schema 设计与错误处理实践。
 - [[concepts/概念_Agent编排|Agent 编排]]：组织、协调、管理多个 Agent 协同工作的工程方法，填补多 Agent 协同缺口。
+- [[concepts/概念_SpecCoding|Spec Coding]]：规格驱动编码方法论，在写代码之前先写规格文档，通过结构化工作流消除 AI 不确定性。
 
 ## 比较
 
@@ -29,6 +30,7 @@
 ## 实体
 
 - [[entities/项目_OpenClaw|OpenClaw 项目]]：开源 AI Agent 平台，280K+ GitHub Stars，三层架构，支持 20+ 消息渠道。
+- [[entities/项目_HermesAgent|Hermes Agent 项目]]：自进化 AI Agent，106K+ GitHub Stars，实现 Memory/Skill/Nudge Engine 三子系统闭环。
 - [[entities/插件_Claudian|Claudian 插件]]：Obsidian 侧边栏 AI 编程代理，支持行内编辑和 Plan Mode。
 
 ## 来源摘要
@@ -47,3 +49,13 @@
 - [[sources/来源_Harness工程|来源：Harness Engineering]]：大模型纳入工程体系的控制面设计。
 - [[sources/来源_FunctionCalling|来源：Function Calling]]：原理、翻车场景、Schema 设计、面试考点。
 - [[sources/来源_企业Agent编排|来源：企业 Agent 编排]]：任务/状态/工具/上下文四大编排维度。
+- [[sources/来源_SpecCoding实战|来源：Spec Coding 实战]]：得物技术基于 Claude Code 的规格驱动编码实战复盘。
+- [[sources/来源_日志诊断Skill|来源：日志诊断 Skill]]：MCP 日志平台 + Skill 模式实现 Bug 定位全自动闭环。
+- [[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]：Agent 自我进化闭环的三个子系统和设计哲学。
+
+## 生活
+
+### 育儿
+
+- [[comparisons/月子中心_vs_月嫂|月子中心 vs 月嫂]]：月子中心省心专业，月嫂灵活便宜，异地家庭优先选月子中心。
+- [[sources/来源_月子中心vs月嫂|来源：月子中心 vs 月嫂]]：大冰关于月子中心与月嫂选择的建议。

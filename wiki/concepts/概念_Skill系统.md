@@ -10,6 +10,8 @@ summary: "Skill 是 Agent 的能力扩展单元，将固定流程封装为可复
 sources:
   - "raw/OpenClaw橙皮书_extracted.txt"
   - "raw/抖音/2026-05-14/抖音-视频-20260514-Skill系统架构优化.md"
+  - "raw/知乎/2026-05-14/深入源码：Hermes Agent 如何实现 Self-Improving.md"
+  - "raw/知乎/2026-05-14/日志诊断 Skill：用 AI + MCP 一键解决BUG｜得物技术.md"
 updated: "2026-05-14"
 ---
 
@@ -167,10 +169,58 @@ flowchart TD
 - 大规模部署时务必实施分层加载 + Gating 机制
 - Agent 自己编写的 Skill 应保存在 workspace 级目录
 
+## Self-Improving Skills（Hermes 模式）
+
+Hermes Agent 实现了 Skill 的自我进化——Agent 不再依赖手写，而是从工作经验中自动提炼 Skill。
+
+### 自动创建
+
+- **触发阈值**：工具调用超过 5 次才值得创建 Skill，简单任务不记
+- **创建时机**：踩过坑再修复的经验、用户纠正过的做法、非平凡工作流
+- **内容来源**：Agent 实际执行过程中的步骤、错误修复、踩坑经验
+
+### 自我修补（Self-Patching）
+
+当 Agent 按照已有 Skill 执行但发现步骤遗漏或踩了新坑时，自动修补 Skill：
+
+1. `fuzzy_find_and_replace` 做模糊匹配局部 patch
+2. `_security_scan_skill()` 安全扫描验证
+3. 不通过则自动回滚到原始内容
+4. Agent 在踩完坑的当场就把 Pitfalls 补上
+
+### 渐进式加载
+
+区别于 OpenClaw 的"重型背包"模式（全量塞入上下文），Hermes 采用"动态图书馆"模式：
+
+- **第一层（常驻上下文）**：仅放轻量索引（Skill 名 + 一句话描述），100 个 Skill ≈ 2,000 Token
+- **第二层（按需加载）**：Agent 判断某个 Skill 跟当前任务相关时，才通过 skill_view 加载完整内容
+
+### MCP + Skill 组合模式
+
+得物技术的 `/log-diagnosis` Skill 展示了另一种 Skill 使用模式：
+
+> **"MCP 给数据，Skill 给流程"** — 协议层（MCP）解决数据获取问题，规范层（Skill）解决分析流程问题
+
+Skill 工作流：traceId → 分页日志拉取 → 代码检索 → 根因分析 → 诊断报告。这证明 Skill 不仅可以封装固定操作流程，还可以编排 MCP 工具的调用序列。
+
+### 设计哲学分野
+
+| 维度 | OpenClaw | Hermes Agent |
+|------|----------|--------------|
+| Skill 创建 | 手写或社区装 | 自动从经验创建（5+ 调用触发） |
+| Memory | 纯追加，无限膨胀 | 容量上限 + 自动压缩 |
+| Skill 加载 | 全量塞入上下文 | 渐进式按需加载 |
+| 学习能力 | 不会从工作中学到东西 | 每次踩坑都在加固 |
+| 维护方式 | 手动更新 | `fuzzy_find_and_replace` 自动 patch |
+
 ## 关联页面
 
 - [[concepts/概念_工具调用|工具调用与执行]]
 - [[concepts/概念_AI_Agent|AI Agent]]
 - [[concepts/概念_上下文工程|上下文工程]]
+- [[concepts/概念_FunctionCalling|Function Calling]]
 - [[entities/项目_OpenClaw|OpenClaw 项目]]
+- [[entities/项目_HermesAgent|Hermes Agent 项目]]
 - [[sources/来源_OpenClaw橙皮书|来源：OpenClaw橙皮书]]
+- [[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]
+- [[sources/来源_日志诊断Skill|来源：日志诊断 Skill]]
