@@ -1,0 +1,125 @@
+mindmap
+  多线程
+    synchronized
+      原理
+        同步代码块
+          使用monitorenter和monitorexit指令
+        同步方法
+          方法修饰符上的ACC_SYNCHRONIZED
+        Java对象头
+          Mark Word（标记字段）
+            哈希码（HashCode）、GC分代年龄、锁状态标志（无锁、偏向锁、轻量级锁、重量级锁）、线程持有的锁、偏向线程 ID、偏向时间戳
+          Klass Pointer（类型指针）
+        Monitor
+          一个同步工具，也可以描述为一种同步机制，它通常被描述为一个对象，Monitor 是线程私有的数据结构，每一个线程都有一个可用monitor record列表，同时还有一个全局的可用列表
+      锁优化（升级）
+        无锁
+        偏向锁
+        轻量级锁
+        重量级锁
+    volatile
+      概念
+        原子性、可见性、有序性
+      原理
+        保证可见性、不保证原子性
+          Java内存屏障
+        禁止指令重排序
+          happen-before
+            happens-before原则规则
+    JUC
+      AQS
+        同步队列
+          概念
+            FIFO双向队列
+            AQS则会将当前线程已经等待状态等信息构造成一个节点（Node）并将其加入到CLH同步队列，同时会阻塞当前线程，当同步状态释放时，会把首节点唤醒（公平锁），使其再次尝试获取同步状态。 在CLH同步队列中，一个节点表示一个线程，它保存着线程的引用（thread）、状态（waitStatus）、前驱节点（prev）、后继节点（next）
+          入队
+            AQS通过“死循环”的方式来保证节点可以正确添加
+          出队
+            首节点的线程释放同步状态后，将会唤醒它的后继节点（next）
+        同步状态获取与释放
+        唤醒与阻塞线程
+      ReentrantLock
+        概念
+          继承AQS，实现Lock，实现由内部类子类Sync的实现类FairSync和NonFairSync实现公平锁和非公平锁
+        获取锁
+          尝试快速获取锁，如果获取失败，则调用acquire（int arg）方法
+          调用tryAcquire（int arg）方法
+          逻辑：首先判断同步状态state == 0 ?，如果是表示该锁还没有被线程持有，直接通过CAS获取同步状态，如果成功返回true。如果state != 0，则判断当前线程是否为获取锁的线程，如果是则获取锁，成功返回true。成功获取锁的线程再次获取锁，这是增加了同步状态state。
+        释放锁
+          Sync的release（int arg）释放锁
+          调用tryRelease（int arg）
+          只有当同步状态彻底释放后该方法才会返回true。当state == 0 时，则将锁持有线程设置为null，free= true，表示释放成功
+        公平锁与非公平锁
+          获取锁的时候是否按照FIFO的顺序来。释放锁不存在公平性和非公平性
+      ReentrantLock与synchronized区别
+        相同点
+          可重入锁
+          加锁方式同步，而且都是阻塞式的同步
+        不同点
+          加锁解锁方式（ReentrantLock手动，synchronized由jvm自动）
+          灵活性（ReentrantLock更灵活）
+          是否等待可中断（ReentrantLock可中断）
+          公平锁（ReentrantLock都可以，synchronized非公平锁）
+          条件condition（ReentrantLock支持）
+          获取线程状态（ReentrantLock提供）
+        使用场景
+          synchronized：资源竞争不是很激烈的情况下，偶尔会有同步的情形下，synchronized是很合适的
+          ReentrantLock提供了多样化的同步，在资源竞争不激烈的情形下，性能稍微比synchronized差点点。当同步非常激烈的时候，synchronized的性能一下子能下降好几十倍。而ReentrantLock确还能维持常态
+      CAS
+        概念
+          CAS中有三个参数：内存值V、旧的预期值A、要更新的值B，当且仅当内存值V的值等于旧的预期值A时才会将内存值V的值修改为B，否则什么都不干。
+        atomic类原理
+          概念：valueOffset为变量值在内存中的偏移地址，unsafe就是通过偏移地址来得到数据的原值的。
+          AtomicInteger
+            addAndGet（）方法
+            unsafe.getAndAddInt
+            compareAndSwapInt
+        CAS缺陷
+          循环时间太长
+          只能保证一个共享变量原子操作
+          ABA问题
+            解决方法：版本号，Java提供了AtomicStampedReference来解决
+      并发工具类
+        CountDownLatch
+          在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待
+        CyclicBarrier
+          它允许一组线程互相等待，直到到达某个公共屏障点 （common barrier point）
+        Semaphore
+          一个控制访问多个共享资源的计数器
+        Exchanger
+          对元素进行配对和交换的线程的同步点
+      ThreadLocal
+        概念
+          为每一个线程创建一个单独的变量副本
+        原理
+          ThreadLocalMap实现
+            内部利用Entry来实现key-value的存储，Entry实现WeakReference（弱引用）
+        ThreadLocal为什么会内存泄漏
+          key为ThreadLocal为弱引用，当key==null，就会回收，但是value却不是弱引用，还有强引用关系，不能回收，所以导致内存泄漏
+      线程池ThreadPoolExecutor
+        线程池参数解析
+          corePoolSize
+          maximumPoolSize
+          keepAliveTime
+          unit
+          workQueue
+            ArrayBlockingQueue
+            LinkedBlockingQueue
+            SynchronousQueue
+            PriorityBlockingQueue
+          threadFactory
+          handler
+            AbortPolicy
+            CallerRunsPolicy
+            DiscardOldestPolicy
+            DiscardPolicy
+        Executors的三种线程池
+          FixedThreadPool
+            流程使用
+              corePoolSize 和 maximumPoolSize都设置为创建FixedThreadPool时指定的参数nThreads，意味着当线程池满时且阻塞队列也已经满时，如果继续提交任务，则会直接走拒绝策略，该线程池不会再新建线程来执行任务，而是直接走拒绝策略。FixedThreadPool使用的是默认的拒绝策略，即AbortPolicy，则直接抛出异常。
+            workQueue使用LinkedBlockingQueue容量无界的问题
+              当线程池中的线程数量等于corePoolSize 时，如果继续提交任务，该任务会被添加到阻塞队列workQueue中，当阻塞队列也满了之后，则线程池会新建线程执行任务直到maximumPoolSize。由于FixedThreadPool使用的是“无界队列”LinkedBlockingQueue，那么maximumPoolSize参数无效，同时指定的拒绝策略AbortPolicy也将无效。而且该线程池也不会拒绝提交的任务，如果客户端提交任务的速度快于任务的执行，那么keepAliveTime也是一个无效参数。
+          SingleThreadExecutor
+          CachedThreadPool
+            使用SynchronousQueue
+            问题

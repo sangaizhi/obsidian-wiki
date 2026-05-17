@@ -15,9 +15,13 @@ related:
   - "[[concepts/概念_Skill系统|Skill 系统]]"
   - "[[concepts/概念_Agent记忆|Agent记忆]]"
   - "[[concepts/概念_Harness工程|Harness Engineering]]"
+  - "[[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]"
+  - "[[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]]"
   - "[[entities/插件_Claudian|Claudian 插件]]"
 sources:
   - "[[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]]"
+  - "[[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]"
+  - "[[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]"
 ---
 
 # Claude Code
@@ -53,9 +57,23 @@ sources:
 - 保存：稳定模式、架构决策、问题解决方案
 - 不保存：临时信息、未核实猜测
 
+### Sub-agent 与 Agent Teams
+
+Claude Code 的 Sub-agent 用独立上下文执行高信息量或专业化子任务，主会话只接收最终结果。它适合并行代码库探索、长文档分析和工具权限隔离；不适合需要实时共享上下文的紧耦合协作。
+
+Agent Teams 在此基础上加入 Team Lead、Teammates、mailbox、broadcast 和共享任务列表，让多 Agent 协作更接近可调度团队。
+
+### 并行与后台任务执行
+
+Claude Code 的并行执行依赖流式工具块和安全性判断：工具块结束即可启动可执行工具，但是否并发取决于工具是否互相安全。后台任务则通过输出文件、通知和状态查询降低主上下文压力。
+
 ## 相关来源
 
 - [[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]] — 原始文章
+- [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]] — Sub-agent、Agent Teams 与协作模式
+- [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]] — 并行工具调用、后台执行和任务管理
 - [[concepts/概念_工具调用|工具调用与执行]] — Claude Code 的工具设计哲学
+- [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]] — 多 Agent 机制拆解
+- [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]] — 并行与后台任务机制
 - [[entities/项目_OpenClaw|OpenClaw 项目]] — 同类项目对比
 - [[entities/项目_HermesAgent|Hermes Agent 项目]] — 同类项目对比

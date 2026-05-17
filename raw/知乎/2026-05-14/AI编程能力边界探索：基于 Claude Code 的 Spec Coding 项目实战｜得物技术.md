@@ -1,4 +1,3 @@
----
 title: "AI编程能力边界探索：基于 Claude Code 的 Spec Coding 项目实战｜得物技术"
 source: "https://zhuanlan.zhihu.com/p/2015365442928140835?share_code=13yT3wZI6eS3f&utm_psn=2037865926641574042"
 author:

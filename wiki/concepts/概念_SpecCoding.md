@@ -12,8 +12,10 @@ related:
   - "[[concepts/概念_Skill系统|Skill 系统]]"
   - "[[concepts/概念_工具调用|工具调用与执行]]"
   - "[[concepts/概念_Agent编排|Agent 编排]]"
+  - "[[entities/项目_GitHubSpecKit|GitHub Spec Kit]]"
 sources:
   - "[[sources/来源_SpecCoding实战|来源：Spec Coding 实战]]"
+  - "[[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]"
 ---
 
 # Spec Coding（规格驱动编码）
@@ -50,11 +52,18 @@ Spec Coding 在实践中衍生出三层协同规范体系：
 - **消除信息孤岛**：MCP 直连接口文档和 PRD 文档
 - **规范一致性**：205 个文件保持高度一致的代码风格
 
+## GitHub Spec Kit 与 SDD
+
+GitHub Spec Kit 将 Spec Coding 推进为 SDD（Spec-Driven Development）工具流：先用 constitution 约束项目原则，再通过 specify、clarify、plan、analyze、tasks、implement 逐步把意图细化成可执行任务。它强调 Intent First、Rich Specs、Multi-step Refinement 和 Model-agnostic Control，用规格文档抵消纯 Vibe Coding 的随机性。
+
+适合新项目、复杂功能、团队协作、生产级原型和遗留系统现代化；简单 bugfix、轻量 UI 调整或强探索型实验则未必需要完整流程。
+
 ## 与相关概念的关系
 
 - [[concepts/概念_Harness工程|Harness Engineering]] — Spec Coding 是 Harness 在开发流程层面的具体实践，通过规范体系约束 AI 产出
 - [[concepts/概念_Skill系统|Skill 系统]] — 示范层代码模板可演化为 Skill，实现规范的可复用
 - [[concepts/概念_FunctionCalling|Function Calling]] — MCP 工具在 Spec Coding 中用于消除信息断层（接口文档直连等）
+- [[entities/项目_GitHubSpecKit|GitHub Spec Kit]] — SDD 的开源工具化载体
 
 ## 已知局限
 

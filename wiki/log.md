@@ -140,3 +140,29 @@
   - 消息中间件：`概念_RabbitMQ基础模型`、`概念_RabbitMQ可靠性投递`、`概念_RabbitMQ消费端治理`、`概念_RabbitMQ与Spring集成`、`概念_Kafka基础与高可用`
 - 更新索引：`wiki/index.md` 新增「后端技术」分类，建立总览、技术实体、概念和来源摘要之间的连接。
 - 跳过：空文件、`target/`、`out/`、`bin/`、`src/` 构建/源码目录、xmind/vsdx/图片等二进制资产未单独生成页面。
+
+## [2026-05-17] ingest | raw/知乎/2026-05-15 + 2026-05-17 → wiki Agent 深水区
+
+- 按 `TheSchema.md` 边界处理：`raw/` 只读，只创建和更新 `wiki/` 页面。
+- 新建来源摘要页（5 个）：
+  - `wiki/sources/来源_LLM_Agent总体框架.md`
+  - `wiki/sources/来源_Agent上下文管理策略.md`
+  - `wiki/sources/来源_ClaudeCode多智能体.md`
+  - `wiki/sources/来源_ClaudeCode并行后台任务管理.md`
+  - `wiki/sources/来源_GitHubSpecKit入门.md`
+- 新建概念页（3 个）：
+  - `wiki/concepts/概念_Agent训练与ChatTemplate.md`
+  - `wiki/concepts/概念_ClaudeCode多智能体.md`
+  - `wiki/concepts/概念_ClaudeCode任务执行机制.md`
+- 新建实体页：`wiki/entities/项目_GitHubSpecKit.md`
+- 更新现有页面（9 个）：
+  - `wiki/concepts/概念_AI_Agent.md` — 新增 Agent 四阶段执行模型。
+  - `wiki/concepts/概念_Agent架构模式.md` — 补充 ReAct、Plan-and-Solve、Reflection 与 Claude Code Sub-agent。
+  - `wiki/concepts/概念_Agent规划能力.md` — 新增 Plan-and-Solve。
+  - `wiki/concepts/概念_工具调用.md` — 新增 Tool Selection/Tool-Calling 与 Claude Code 并发执行机制。
+  - `wiki/concepts/概念_上下文工程.md` — 新增上下文卸载、可逆压缩和缓存友好组织。
+  - `wiki/concepts/概念_Agent编排.md` — 新增 Claude Code Sub-agent、Agent Teams 与协作拓扑。
+  - `wiki/concepts/概念_SpecCoding.md` — 新增 GitHub Spec Kit / SDD 工作流。
+  - `wiki/entities/项目_ClaudeCode.md` — 新增 Sub-agent、Agent Teams、并行与后台任务执行。
+  - `wiki/overview/知识图谱.md` — 新增 Agent 训练、Claude Code 多智能体/任务执行、GitHub Spec Kit 节点，覆盖状态 31/31。
+- 更新索引：`wiki/index.md` 新增 3 个概念、1 个实体和 5 个来源摘要入口。

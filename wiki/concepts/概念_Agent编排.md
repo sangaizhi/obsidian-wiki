@@ -10,7 +10,9 @@ summary: "Agent 编排是组织、协调、管理多个 Agent 协同工作的工
 sources:
   - "raw/douyin/2026-05-14/抖音-视频-20260514-企业Agent编排.md"
   - "raw/抖音/2026-05-15/抖音-视频-20260515-多Agent协同设计详解.md"
-updated: "2026-05-15"
+  - "raw/知乎/2026-05-15/从Claude Code入手看Agent框架设计思路：多智能体(Multi-Agent).md"
+  - "raw/知乎/2026-05-15/Claude Code的并行、后台执行、任务管理与一些误区.md"
+updated: "2026-05-17"
 ---
 
 # 概念：Agent 编排
@@ -158,6 +160,14 @@ Nova-AI 提出的多 Agent 设计框架可概括为：**多 Agent 不是堆数�
 - **可观测性**：多 Agent 调试比单 Agent 难一个数量级，需完整 trace 链路
 - **成本**：每个 Agent 调用 LLM 成本线性累加，需平衡质量与 token 消耗
 
+## Claude Code Sub-agent 与 Agent Teams
+
+Claude Code 的 Sub-agent 更偏工程实践：把信息量大、相互独立、需要不同工具权限的任务拆给独立上下文执行，主 Agent 只接收压缩后的结果。这能节省主上下文并支持并行探索，但不适合需要共享实时状态或强依赖步骤的任务。
+
+Agent Teams 则把多 Agent 协同进一步组织成 Team Lead + Teammates：通过 mailbox、broadcast、idle notification 和共享任务列表协调工作，更接近长期运行的团队式编排。
+
+常见协作拓扑包括 Orchestrator-Worker、Hierarchical、Mesh 和 Swarm/Blackboard。选型关键不是 Agent 数量，而是任务依赖、通信成本和冲突仲裁方式。
+
 ## 关联页面
 
 - [[concepts/概念_ManagedAgents|Managed Agents]]
@@ -165,5 +175,9 @@ Nova-AI 提出的多 Agent 设计框架可概括为：**多 Agent 不是堆数�
 - [[concepts/概念_Harness工程|Harness Engineering]]
 - [[concepts/概念_上下文工程|上下文工程]]
 - [[concepts/概念_AI_Agent|AI Agent]]
+- [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]
+- [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]]
 - [[sources/来源_企业Agent编排|来源：企业 Agent 编排]]
 - [[sources/来源_多Agent协同设计|来源：多 Agent 协同设计]]
+- [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]
+- [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]

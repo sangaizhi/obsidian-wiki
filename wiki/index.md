@@ -18,6 +18,9 @@
 - [[concepts/概念_FunctionCalling|Function Calling]]：LLM 通过函数声明自动调用外部工具的机制，Schema 设计与错误处理实践。
 - [[concepts/概念_Agent编排|Agent 编排]]：组织、协调、管理多个 Agent 协同工作的工程方法，填补多 Agent 协同缺口。
 - [[concepts/概念_SpecCoding|Spec Coding]]：规格驱动编码方法论，在写代码之前先写规格文档，通过结构化工作流消除 AI 不确定性。
+- [[concepts/概念_Agent训练与ChatTemplate|Agent 训练与 Chat Template]]：从训练样本、工具轨迹和 Chat Template 角度解释 Agent 能力如何被构造。
+- [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]：Claude Code Sub-agent、Agent Teams 与多智能体协作边界。
+- [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]]：并行工具调用、后台任务、任务通知和输出文件的执行机制。
 
 ## 比较
 
@@ -90,6 +93,7 @@
 - [[entities/项目_OpenClaw|OpenClaw 项目]]：开源 AI Agent 平台，280K+ GitHub Stars，三层架构，支持 20+ 消息渠道。
 - [[entities/项目_HermesAgent|Hermes Agent 项目]]：自进化 AI Agent，106K+ GitHub Stars，实现 Memory/Skill/Nudge Engine 三子系统闭环。
 - [[entities/项目_ClaudeCode|Claude Code 项目]]：Anthropic 官方 CLI 编程 Agent，动态 System Prompt + 三层工具架构。
+- [[entities/项目_GitHubSpecKit|GitHub Spec Kit 项目]]：规格驱动开发工具流，用 constitution/spec/plan/tasks 将意图细化为实现。
 - [[entities/工具_Superpowers|Superpowers 工具]]：开源 AI 编程工作流插件，强制执行 TDD，适配 Claude Code/Codex/Gemini 等。
 - [[entities/插件_Claudian|Claudian 插件]]：Obsidian 侧边栏 AI 编程代理，支持行内编辑和 Plan Mode。
 
@@ -116,6 +120,11 @@
 - [[sources/来源_Superpowers赋能|来源：Superpowers 赋能]]：开源 AI 编程工作流插件，强制执行 TDD，子代理驱动开发。
 - [[sources/来源_多Agent协同设计|来源：多 Agent 协同设计]]：分工 + 通信 + 仲裁三维度，AI PM 面试实战。
 - [[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]]：万字长文分析 System Prompt 组织、工具设计哲学、CLAUDE.md 注入机制。
+- [[sources/来源_LLM_Agent总体框架|来源：LLM Agent 总体框架]]：Agent = LLM × Planning × Memory × Tools，覆盖 ReAct、Plan-and-Solve 与 Reflection。
+- [[sources/来源_Agent上下文管理策略|来源：Agent 上下文管理策略]]：context rot、上下文卸载、可逆压缩、子 Agent 隔离和 KV cache 策略。
+- [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]：Sub-agent 使用边界、内置子 Agent 与 Agent Teams 协作模型。
+- [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]：并行工具调用、后台执行、任务通知和 TaskOutput 误区。
+- [[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]：GitHub Spec Kit 的 SDD 工作流、适用场景与 Vibe Coding 对比。
 
 ## 生活
 

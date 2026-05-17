@@ -9,7 +9,9 @@ tags:
 summary: "Agent 架构是 Agent 内部的工作模式设计，7 种主流架构从简单到复杂覆盖不同场景，实际落地往往是多种架构的融合。"
 sources:
   - "raw/抖音/2026-05-14/抖音-视频-20260514-Agent的7种主流架构.md"
-updated: "2026-05-14"
+  - "raw/知乎/2026-05-15/万字长文解读LLM Agent：总体框架、经典论文与实践.md"
+  - "raw/知乎/2026-05-15/从Claude Code入手看Agent框架设计思路：多智能体(Multi-Agent).md"
+updated: "2026-05-17"
 ---
 
 # 概念：Agent 架构模式
@@ -112,6 +114,13 @@ Agent 通过 Function Calling（OpenAI）或 Tool Use（Anthropic）协议调用
 - 落地最大挑战是**可观测性**和**安全性**
 - 详见 [[overview/知识图谱]]
 
+## 经典范式补充
+
+- **ReAct**：把 Thought/Action/Observation 串成循环，适合需要边查边做的任务。
+- **Plan-and-Solve**：先由 Planner 生成计划，再由 Executor 执行；复杂环境中还需要动态重规划。
+- **Reflection/Reflexion**：引入评价器或自我反思，把错误经验写回后续行动。
+- **Claude Code Sub-agent**：把主上下文之外的探索任务交给子 Agent，典型用途是并行调研、代码库扫描和专业工具隔离。
+
 ## 关联页面
 
 - [[concepts/概念_AI_Agent|AI Agent]]
@@ -120,5 +129,9 @@ Agent 通过 Function Calling（OpenAI）或 Tool Use（Anthropic）协议调用
 - [[concepts/概念_Agent记忆|Agent 记忆]]
 - [[concepts/概念_Agent规划能力|Agent 规划能力]]
 - [[concepts/概念_上下文工程|上下文工程]]
+- [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]
+- [[concepts/概念_Agent训练与ChatTemplate|Agent 训练与 Chat Template]]
 - [[sources/来源_Agent的7种架构|来源：7种架构]]
 - [[sources/来源_ManagedAgents|来源：Managed Agents]]
+- [[sources/来源_LLM_Agent总体框架|来源：LLM Agent 总体框架]]
+- [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]

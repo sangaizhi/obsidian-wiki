@@ -8,7 +8,8 @@ summary: "Agent 规划能力是把目标拆成步骤、根据反馈调整路径�
 sources:
   - "raw/ai/agent/7.Agent的核心：规划能力.md"
   - "raw/ai/agent/0. AI概念脉络.md"
-updated: "2026-05-12"
+  - "raw/知乎/2026-05-15/万字长文解读LLM Agent：总体框架、经典论文与实践.md"
+updated: "2026-05-17"
 ---
 
 # 概念：Agent规划能力
@@ -31,6 +32,10 @@ Agent 规划能力是指 Agent 在获得目标后，能自行拆解任务、选�
 
 行动前先模拟多个分支，提前排除低胜率路径，保留更可能成功的方案。
 
+### Plan-and-Solve
+
+先由 Planner 生成可执行计划，再由 Solver/Executor 逐步执行。它比单轮 CoT 更强调“计划”和“执行”的角色分离；在真实 Agent 中，还需要根据工具观察结果持续修订计划。
+
 ## 关键权衡
 
 规划不是越多越好。复杂任务需要推演和备选方案，简单任务则应尽快行动，避免过度思考拖慢执行。
@@ -38,6 +43,7 @@ Agent 规划能力是指 Agent 在获得目标后，能自行拆解任务、选�
 ## 关联页面
 
 - [[concepts/概念_AI_Agent|AI Agent]]
+- [[concepts/概念_Agent架构模式|Agent 架构模式]]
 - [[comparisons/工作流_vs_Agent|工作流 vs Agent]]
 - [[sources/来源_Agent的规划能力|来源：Agent的规划能力]]
-
+- [[sources/来源_LLM_Agent总体框架|来源：LLM Agent 总体框架]]
