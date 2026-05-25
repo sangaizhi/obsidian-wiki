@@ -30,6 +30,6 @@ updated: "2026-05-12"
 
 - [[concepts/概念_Agent规划能力|Agent 规划能力]]
 - [[concepts/概念_AI_Agent|AI Agent]]
-- [[comparisons/工作流_vs_Agent|工作流 vs Agent]]
+- [[工作流_vs_Agent|工作流 vs Agent]]
 - [[overview/主题_Agent入门综述|Agent 入门综述]]
 

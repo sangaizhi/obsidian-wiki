@@ -24,7 +24,8 @@
 
 ## 比较
 
-- [[comparisons/工作流_vs_Agent|工作流 vs Agent]]：工作流适合固定流程，Agent 适合动态决策；实践中应先工作流后 Agent，避免过度设计。
+- [[工作流_vs_Agent|工作流 vs Agent]]：工作流适合固定流程，Agent 适合动态决策；实践中应先工作流后 Agent，避免过度设计。
+- [[ClaudeMD_vs_Skills|Claude.md vs Skills]]：常驻通用规则 vs 按需专业领域知识，企业规章制度 vs SOP 操作手册的类比。
 
 ## 知识图谱
 
@@ -124,11 +125,12 @@
 - [[sources/来源_Agent上下文管理策略|来源：Agent 上下文管理策略]]：context rot、上下文卸载、可逆压缩、子 Agent 隔离和 KV cache 策略。
 - [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]：Sub-agent 使用边界、内置子 Agent 与 Agent Teams 协作模型。
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]：并行工具调用、后台执行、任务通知和 TaskOutput 误区。
+- [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]：Claude.md vs Skills，Skill 的工程化定义与"教" vs "约束"设计哲学。
 - [[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]：GitHub Spec Kit 的 SDD 工作流、适用场景与 Vibe Coding 对比。
 
 ## 生活
 
 ### 育儿
 
-- [[comparisons/月子中心_vs_月嫂|月子中心 vs 月嫂]]：月子中心省心专业，月嫂灵活便宜，异地家庭优先选月子中心。
+- [[月子中心_vs_月嫂|月子中心 vs 月嫂]]：月子中心省心专业，月嫂灵活便宜，异地家庭优先选月子中心。
 - [[sources/来源_月子中心vs月嫂|来源：月子中心 vs 月嫂]]：大冰关于月子中心与月嫂选择的建议。

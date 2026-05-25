@@ -57,6 +57,6 @@ ReAct、Plan-and-Solve、Reflection/Reflexion 等经典范式，本质上都是�
 - [[concepts/概念_Agent规划能力|Agent 规划能力]]
 - [[concepts/概念_工具调用|工具调用与执行]]
 - [[concepts/概念_Agent训练与ChatTemplate|Agent 训练与 Chat Template]]
-- [[comparisons/工作流_vs_Agent|工作流 vs Agent]]
+- [[工作流_vs_Agent|工作流 vs Agent]]
 - [[overview/主题_Agent入门综述|Agent 入门综述]]
 - [[sources/来源_LLM_Agent总体框架|来源：LLM Agent 总体框架]]

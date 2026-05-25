@@ -1,3 +1,18 @@
+## [2026-05-25] ingest | raw/ai/ClaudeCode实战/Chapter 3 → wiki Skills 工程实践
+
+- 新建来源摘要页：
+  - `wiki/sources/来源_ClaudeCode实战_Skills工程实践.md`
+- 新建比较页：
+  - `wiki/comparisons/ClaudeMD_vs_Skills.md` — Claude.md（常驻通用规则）vs Skills（按需专业知识），企业规章制度 vs SOP 类比
+- 更新现有概念页（1 个）：
+  - `wiki/concepts/概念_Skill系统.md` — 新增 Claude.md vs Skills 二维知识体系、Skill 工程化定义（文件夹 vs 字符串）、"教" vs "约束"设计哲学
+- 更新实体页（1 个）：
+  - `wiki/entities/项目_ClaudeCode.md` — 添加新来源引用和相关比较页链接
+- 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Claude.md vs Skills 决策节点（链接 Skill → ClaudeCode），覆盖状态 32/32
+- 更新索引：`wiki/index.md` 新增 1 个来源 + 1 个比较页条目
+
+---
+
 ## [2026-05-12] ingest | raw/ai/agent → wiki Agent 知识层
 
 - 新建来源摘要页：

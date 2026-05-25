@@ -13,7 +13,8 @@ sources:
   - "raw/知乎/2026-05-14/深入源码：Hermes Agent 如何实现 Self-Improving.md"
   - "raw/知乎/2026-05-14/日志诊断 Skill：用 AI + MCP 一键解决BUG｜得物技术.md"
   - "raw/抖音/2026-05-15/抖音-视频-20260515-Perplexity如何写Skill.md"
-updated: "2026-05-15"
+  - "raw/ai/ClaudeCode实战/Chapter 3授人以渔，Skills工程实践.md"
+updated: "2026-05-25"
 ---
 
 # 概念：Skill 系统
@@ -21,6 +22,31 @@ updated: "2026-05-15"
 ## 定义
 
 Skill（技能）是 Agent 的能力扩展单元，本质上是将固定流程、工具调用和领域知识封装为可复用的标准模块。Skill / SOP 封装解决的是"让 Agent 稳定地做好特定事情"的问题——把经验固化为可执行的流程。
+
+## Claude.md vs Skills：知识的两个维度
+
+Claude Code 体系下，知识被分为两个维度的资产，类比企业管理中"规章制度"与"SOP 操作手册"的区别：
+
+| 维度 | Claude.md | Skills |
+|------|-----------|--------|
+| 承载内容 | 项目通用规则（编码语言、缩进风格、命名规范） | 专业领域知识（代码审查、日志诊断） |
+| 生效范围 | 当前项目 | 可跨项目、跨会话 |
+| 触发方式 | 任何对话自动生效 | 按需激活（Description = Router） |
+| 加载策略 | 每次全量加载 | 渐进式按需加载 |
+| Token 成本 | 固定开销，不论是否用到 | 按需支付，用多少付多少 |
+| 企业类比 | 企业规章制度（考勤、安全红线） | 标准操作程序（特定岗位、特定任务） |
+
+> **"教" vs "约束"**：Claude.md 是**约束**——定义不能做什么、必须怎么做；Skills 是**教**——让 Claude 真正理解一个领域的运作逻辑，从被动执行工具变成领域熟手。两者在知识管理上是互补关系，不能互相替代。
+
+## Skill 的工程化定义
+
+Skill 绝不仅仅是一段 Prompt 或一个简单的配置项：
+
+- **是文件夹，不是字符串**：Skill 是一个完整的工程化目录结构，可以容纳代码库、详尽的领域文档、多样的模板、可执行的脚本
+- **是工程化，不是一段文字**：从"字符串"到"工程化"，意味着 Skill 具备了版本管理、依赖管理、测试验证等工程属性
+- **是内化，不是约束**："教"揭示了运作机制的本质——Skill 是一种能力赋予，通过系统化的知识传递让 Agent 内化领域运作逻辑
+
+详细对比见 [[comparisons/ClaudeMD_vs_Skills|Claude.md vs Skills 比较页]]。
 
 ## Skill vs SOP
 
@@ -303,4 +329,5 @@ Skill 不是频繁改规则，而是**持续追加失败经验**。每次踩坑�
 - [[entities/项目_HermesAgent|Hermes Agent 项目]]
 - [[sources/来源_OpenClaw橙皮书|来源：OpenClaw橙皮书]]
 - [[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]
+- [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]
 - [[sources/来源_日志诊断Skill|来源：日志诊断 Skill]]

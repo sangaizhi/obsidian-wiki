@@ -34,7 +34,7 @@ Agent 可以拆成四个关键模块：
 1. 先理解 [[concepts/概念_AI_Agent|AI Agent]] 与普通大模型应用的区别。
 2. 再理解 [[concepts/概念_Agent记忆|Agent 记忆]]，区分短期上下文和长期记忆。
 3. 接着理解 [[concepts/概念_上下文工程|上下文工程]]，掌握如何控制输入信息。
-4. 最后理解 [[concepts/概念_Agent规划能力|Agent 规划能力]] 和 [[comparisons/工作流_vs_Agent|工作流 vs Agent]]，判断什么时候该用 Agent。
+4. 最后理解 [[concepts/概念_Agent规划能力|Agent 规划能力]] 和 [[工作流_vs_Agent|工作流 vs Agent]]，判断什么时候该用 Agent。
 
 ## 当前知识库中的主要观点
 

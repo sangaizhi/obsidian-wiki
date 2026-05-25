@@ -44,6 +44,6 @@ Agent 规划能力是指 Agent 在获得目标后，能自行拆解任务、选�
 
 - [[concepts/概念_AI_Agent|AI Agent]]
 - [[concepts/概念_Agent架构模式|Agent 架构模式]]
-- [[comparisons/工作流_vs_Agent|工作流 vs Agent]]
+- [[工作流_vs_Agent|工作流 vs Agent]]
 - [[sources/来源_Agent的规划能力|来源：Agent的规划能力]]
 - [[sources/来源_LLM_Agent总体框架|来源：LLM Agent 总体框架]]
