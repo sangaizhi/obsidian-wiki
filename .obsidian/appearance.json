@@ -2,5 +2,6 @@
   "cssTheme": "AnuPpuccin",
   "nativeMenus": true,
   "translucency": true,
-  "baseFontSize": 18
+  "baseFontSize": 18,
+  "accentColor": "#4b93f1"
 }

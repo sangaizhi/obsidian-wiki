@@ -1,4 +1,16 @@
-## [2026-05-25] ingest | raw/ai/ClaudeCode实战/Chapter 3 → wiki Skills 工程实践
+## [2026-05-25] ingest | raw/ai/ClaudeCode实战/Chapter 3 → wiki 全链路拆解
+
+- 新建概念页（3 个）：
+  - `wiki/concepts/概念_渐进式披露.md` — 三层图书馆模型、description 预算机制（上下文窗口 2%）、静默排除、"少而精"架构原则
+  - `wiki/concepts/概念_Skill触发机制.md` — 双通道激活（显式调用 + 语义匹配）、description 三要素公式（What + When + Not for）、过/欠触发诊断、参考型 vs 任务型 Skill
+  - `wiki/concepts/概念_Skill工程设计.md` — 目录规范（kebab-case + SKILL.md 大写）、元数据三维度（触发/权限/运行时）、路由器思维、契约式引用、500 行法则
+- 更新现有页面（4 个）：
+  - `wiki/sources/来源_ClaudeCode实战_Skills工程实践.md` — 扩展为全文 5 节核心要点 + 关键引文覆盖全部章节
+  - `wiki/concepts/概念_Skill系统.md` — 新增 Claude Code Skills 工程实践小节 + 关联链接
+  - `wiki/comparisons/ClaudeMD_vs_Skills.md` — 关联新概念页
+  - `wiki/entities/项目_ClaudeCode.md` — 关联新概念页
+- 更新索引：`wiki/index.md` 新增 3 个概念条目 + 更新来源描述
+- 覆盖本次 Ingest 全部 5 章节（§3.1~§3.5）
 
 - 新建来源摘要页：
   - `wiki/sources/来源_ClaudeCode实战_Skills工程实践.md`

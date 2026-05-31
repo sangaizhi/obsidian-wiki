@@ -50,6 +50,9 @@ updated: "2026-05-25"
 
 ## 关联页面
 
+- [[concepts/概念_渐进式披露|渐进式披露]] — Skill 的三层加载模型与预算机制
+- [[concepts/概念_Skill触发机制|Skill 触发机制]] — 双通道激活与 description 设计
+- [[concepts/概念_Skill工程设计|Skill 工程设计]] — 目录规范与正文设计原则
 - [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]] — 本章原始内容
 - [[concepts/概念_Skill系统|Skill 系统]] — Skill 系统的完整概念页
 - [[entities/项目_ClaudeCode|Claude Code 项目]] — 相关项目实体
