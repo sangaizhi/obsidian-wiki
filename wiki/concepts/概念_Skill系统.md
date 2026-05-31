@@ -299,7 +299,12 @@ Skill 不是频繁改规则，而是**持续追加失败经验**。每次踩坑�
 
 - [[concepts/概念_渐进式披露|渐进式披露]] — 三层加载模型与 budget 预算机制
 - [[concepts/概念_Skill触发机制|Skill 触发机制]] — 双通道激活、description 设计、参考型 vs 任务型
-- [[concepts/概念_Skill工程设计|Skill 工程设计]] — 目录规范、元数据、路由器思维、500行法则
+- [[concepts/概念_Skill工程设计|Skill 工程设计]] — 目录规范、元数据、路由器思维、500行法则、作用域与优先级
+- [[concepts/概念_Skill动态上下文|Skill 动态上下文]] — $ARGUMENTS 变量与 !`command` 动态 Shell 注入
+- [[concepts/概念_Skill设计模式|Skill 设计模式]] — 模板驱动、脚本增强、知识分层、工具隔离
+- [[concepts/概念_Skill实战案例|Skill 实战案例]] — 代码审查 Skill + 智能提交 Skill
+- [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]] — 触发/功能/性能三类测试与迭代闭环
+- [[concepts/概念_Skill与软件工程|Skill 与软件工程]] — 五大软件工程原则映射
 
 ## 关联页面
 

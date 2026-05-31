@@ -207,7 +207,7 @@ Skill中有一个字段`disable-model-invocation`，通过该字段可以发现�
 ### 3.5.1 路由器思维
   一个常见的误区是将所有信息都写到SKILL.md的正文中，把正文当做“知识仓”。但是，正确的设计是将其定位为路由器，文件自身仅包含核心流程与路由表，而相近的知识内容则分散存储于被引用的文件中。
 
-![[chapter3_3.5.1_路由器思维]]
+![[chapter3_3.5.1_路由器思维|1000]]
 
 核心技巧：构建“快速参考”，该表格能以极低的Token，清晰的向大模型指引关键维度的路由条件。
 ```
@@ -356,4 +356,244 @@ Preserve all existing behavior and tests
 ```
 
    当用户使用`/migrate-component SearchBar React vue`命令调用上述Skill时，大模型实际接收到的指令为`Migrate the SearchBar component from React to Vue.Preserve all existing behavior and tests`。
+SKILL.md 可以使用以下变量：
+
+
+| 变量            | 说明            |
+| ------------- | ------------- |
+| $ARGUMENTS    | 所有参数的完整字符串    |
+| $ARGUMENTS[0] | 第一个参数(索引从0开始) |
+| $ARGUMENTS[2] | 第二个参数         |
+| $0、$1、$2      | 位置参数的简写形式     |
+
+### 3.7.2 动态上下文注入
+
+这是Skills 系统中最具威力且独一无二的特性。"!`command`"语法允许将该SKILL.md发送给大模型之前，现在Shell环境中执行指定命令，并将命令的输出结果直接内联替换到Prompt中。
+例如：
+有已有一个Skill
+```
+---
+name: pr-create
+---
+## Current content
+Current branch:
+!`git branch --show-current`
+
+Recent commits:
+!`git lo origin/main..HEAD  --oneline 2>/dev/null || echo "No commits"`
+
+Files changed:
+!`git diff --stat origin/main 2>/dev/null || git diff --stat HEAD~3`
+```
+  当用户执行`/pr-create "Add auth"`命令时，大模型收到的是已经填充了动态数据的Prompt：
+  ```
+  ## Current content
+Current branch:
+feature/auth
+
+Recent commits:
+a1b2c3d Add JWT middleware
+d4e5f6g Add login endpoints
+
+Files changed:
+src/auth/middleware.ts | 45 +++
+src/auth/login.ts      | 82 +++
+2 files changed, 127 insertions(+)
+  ```
+"!`command`"  特性使用前后对比
+
+| 维度          | 未启用          | 使用           |
+| ----------- | ------------ | ------------ |
+| 启动是的上下文     | 空白，需要对轮对话探索  | 已注入关键信息      |
+| 首次响应的工具调用次数 | 3~5词（用户手机信息） | 1~2次（直接执行行动） |
+| Token消耗     | 高            | 低            |
+| 响应速度        | 慢            | 快            |
+| 结果一致性       | 低（存在信息遗漏风险）  | 高（固定注入相同信息）  |
+大模型在执行 “!`command`” 时遵循严格的顺序，先替换 $ARGUMENTS 变量，再执行Shell命令。这样就存在一个问题，用户输入的内容将直接拼接到Shell命令中，如果不加以管控，极易收到Shell注入攻击。因此，任何使用 “!`command`” 语法的Skill，必须通过`allowed-tools`配置严格限制其可执行的命令范围，以构建必要的安全围栏。
+
+## 3.8 作用域与优先级
+ Skill文件可不属于不同的层架，每个层级对应特定的生效范围与适用场景。
+
+| 位置                                 | 生效范围      | 用途                     |
+| ---------------------------------- | --------- | ---------------------- |
+| 企业配置中心                             | 全员生效      | 强制执行的企业级开发规范与安全策略      |
+| `~/.claude/skills/<name>/`         | 个人所有项目    | 个人编码习惯，通用工具集以及跨项目辅助脚本  |
+| `<project>/.claude/skills/<name>/` | 仅限当前项目    | 项目特有的工作流、业务逻辑定制及团队协作规范 |
+| Plugin内置资源                         | Plugin启用时 | 社区共享的能力包、特定框架的专用指令集    |
+
+Skill 位置的优先级
+企业策略 >  个人配置(./claude/) > 项目配置(.claude/) > Plugin内置。
+
+**企业策略**：企业级配置拥有最高权限，用于强制执行全局安全与合规策略。
+**个人配置**：位于个人目录的配置，用于满足开发者的个人习惯。
+**项目配置**：位于项目根目录的配置，专为特定项目服务。
+
+将 Skill 目录 纳入项目的版本控制，是实现团队知识零成本共享的最优解。
+* 即插即用：团队成员拿到项目代码后，相关Skill自动生效，无需手动操作；
+* 同步演进：Skill跟随代码一同更新；
+
+## 3.9 Skill的4种设计模式
+
+![[chapter3_3.9_Skill设计模式组合决策树|1000]]
+ * **模板驱动模式**：利用预定义模板严格约束输出格式。该模式适用于需要标准化输出的场景。例如：周报、审查报告
+ * **脚本增强模式**：将确定性计算逻辑封装为脚本，由大模型调用执行而非自行推导。适用于财务计算、正则匹配、数据转换等场景。相比于大模型推理，脚本执行更精准、更节省Token，更具复现性。经验：如果发现自己的SKILL.md 中编写公式使大模型运行计算，请立即停止，该逻辑应当被移至脚本中。
+ * **知识分层模式**：依据使用频率对知识进行分层组织，遵循”8/2法则“（即80%的请求仅需20%的核心内容），将高频知识内联制SKILL.md，低频知识则置于引用文件中按需加载。
+ * **工具隔离模式**：通过 `allowed-tool` 机制严格界定Skill的能力边界。这属于安全设计范畴，核心价值在于明确"禁止做什么"，这比”能做什么“更为关键。
+
+## 3.10 实战
+### 3.10.1 代码审查Skill
+
+代码审查约定：
+* 优先级原则：优先关注安全问题，其次是性能问题，最后才是代码问题；
+* 反馈要求：必须提供具体的修改建议，严禁仅指出问题而不给方案；
+* 分级标注：每个问题均需标注严重等级；
+
+#### 3.10.1.1 目录结构
+```
+code-reviewing
+├── SKILL.md                    # 核心审查流程与标准
+├── reference
+   └── security-level-guide.md  # 详细等级判定标准
+```
+
+#### 3.10.1.2 SKILL.md 正文
+```markdown
+---
+name: code-reviewing
+## 按照团队标准执行结构化代码审查。按优先级顺序检查安全漏洞、性能问题和代码质量。当用户要求“审查代码”、“进行代码审查”、“检查此PR”、“审核此功能”或提供代码并要求反馈时使用。
+description: Performs structured code reviews following team standards. Checks security vulnerabilities, performance issues, and code quality in priority order. Use when users asks to "review code", "do a code review", "check this PR","audit this function", or provides code and asks for feedback.
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+---
+# 代码审查流程
+你是一名资深代码审查员。执行代码审查时，请严格遵循以下优先级顺序。
+
+## 第一优先级：安全审查
+发现以下安全问题应立即报告：
+- SQL注入风险：如直接拼接SQL字符串、未使用参数化查询
+- XSS 漏洞：未转义的用户输入直接输出只HTML
+- 敏感信息硬编码：包括密码、密钥、Token、数据库连接字符串等
+- 权限验证缺陷：如缺失认证中间件、存在越权访问逻辑
+  
+## 第二优先级：性能问题
+- N+1查询：循环内频繁查询数据库
+- 索引缺失：高频查询字段未建立索引
+- 重复计算：循环内存在可提升至循环外的不变量计算
+- 内存泄露风险：如未关闭的连接、持续增长的缓存等
+
+## 第三优先级：代码质量
+- 函数过长：超过50行且无合理理由
+- 命名不规范：变量或者函数命名含义不清
+- 错误处理缺失：如空的catch块，异常被静默吞掉
+- 代码重复：违反 DRY 原则
+  
+## 输出格式规范
+每个发现的问题必须包含以下4个要素：
+- 严重等级：Critical / Major / Minor
+- 问题描述：具体阐述问题所在
+- 文件位置：file_path:line_number
+- 修改建议：提供具体的代码修正方案或者解决策略
+  
+若未发现任何问题，请明确回复"通过审查"，并简述已检查的主要方面。
+
+注：详细的等级判断标准请参见`reference/security-level-guide.md`。
+```
+
+### 3.10.2 任务型Skill：智能提交
+
+在实际编程中，每日需要频繁提交代码，手动撰写 commit message， 既耗时又容易不规范。为此，我们需要设计一个任务型Skill。由于该Skill的操作具有副作用 (直接修改代码仓库历史记录)，因此该Skill必须由用户手动触发，严禁自动执行。
+
+```markdown
+---
+name: version-committing
+description: Quick git commit with auto-generated or specified message
+argument-hint: "[optional: commit message]"
+disable-model-invocation: true
+allowed-tools:
+  - Bash(git status:*) 
+  - Bash(git add:*)
+  - Bash(git commit:*)
+  - Bash(git diff:*)
+model: deepseek-v4-flash
+---
+
+# Task: create a git commit
+
+## Input Handling
+If a message is provided: $ARGUMENTS
+- Use that as the commit message
+If no message is provided:
+- Analyze the changes with `git diff --staged` (or `git diff` if nothing staged)
+- Generate a concise, meaningful commit message
+  
+## Current State (Auto-detected)
+Git status:
+!`git status --short 2>/dev/null || echo "Not a git repository"`
+
+Stage changes:
+!`git diff --stageed --stat 2>/dev/null || echo ""Nothing staged`
+
+## Steps
+1. Check 'git status' to see current state
+2. If nothing staged, run `git add .` to stage all changes
+3. Review what will be committed with `git diff --staged` 
+4. Create commit with appropriate message
+5. Show brief comfirmation
    
+## Commit Message Format
+- Start with type: `feat:`,`fix:`,`docs:`,`refactor:`,`test:`,`chore:`
+- Be consice but descriptive (max 72 chars for first line)
+- Example: `feat: add user authentication with JWT`
+  
+## Output
+Show a brief comfirmation:
+√ Committed: [commit message]
+  [number] files changed
+```
+说明：
+* **安全控制(`disable-model-invocation: true`)**：强制禁用模型调用，确保执行过程依赖预设脚本，防止意外的AI推理介入。
+* **动态参数($ARGUMENTS)**：支持灵活的参数传递机制，允许用户直接指定提交信息或者留空以触发自动生成。
+* **上下文注入(!`command`)**：利用Shell命令在执行期间即时补货并注入当前的Git状态。这使得大模型在启动时就拥有完整的上下文信息；
+* **成本与性能优化**：指定使用轻量级模型，提交操作主要依赖规则而非负载推理，该配置在保证操作的准确性，有效降低了延迟和资源消耗。
+
+## 3.11 测试与迭代
+3类核心测试方法，以确保Skill的健壮性。
+* **触发测试**：准备10个应触发和10个不应触发Skill的问题，用来验证大模型判断的准确率。目标：相关任务触发率要高于90%，无关任务误触发率应低于5%；
+* **功能测试**：验证Skill加载后的执行质量，检查要点需包含：输出格式是否服务预期、检查项是否完整覆盖、边界情况是否得到妥善处理；
+* **性能对比**：针对同一任务，分别在“有Skill“和”无Skill“的状态下各执行5次，对比Token消耗量、用户修正次数以及最终输出质量。
+
+如果需要反复手动修正大模型的输出，这就表明SKILL.md正文需要更新，将修正逻辑直接写入SKILL.md，下次就不会发生同类错误。
+
+## 3.12 从软件工程看Skills
+### 3.12.1 关注点分离（Separation of Concerns）
+核心理念：“授人以鱼，不如授人以渔”。
+Skills是将解决问题得到方法、步骤与经验沉淀为可复用的结构化资产，而非提供一次性答案。使得我们的Agent从以来“临时对话灵感”转变为能稳定复现高质量工作流。
+Agent的三层架构职责：
+* CLAUDE.md：全局规则（项目背景、通用规范）
+* Skills：专用工作流（特定领域的复杂逻辑封装）
+* 子智能体：任务执行（动态规划与实时操作）
+工程师警示：严禁将所有逻辑写入CLAUDE.md，就像不要把所有代码写在main函数一样，这样会导致上下文同于、维护困难、难以扩展。
+
+### 3.12.2 依赖倒置（Dependency Inversion）
+核心机制：面向接口编程，而非面向实现编程。
+ 大模型不直接依赖Skill的具体内部实现，而是依赖其`description`和输出契约。只要保持契约不变，开发者可随时替换、重构或升级Skill的内部逻辑。
+
+### 3.12.3 缓存优化与惰性加载
+核心策略：渐进式披露
+“渐进式披露”是一种典型的**惰性加载**策略，系统不是在启动时预加载所有知识库，而是在首次需要特定技能时才加载相关资源。
+
+### 3.12.4 最小权限原则
+安全基石：allowed-tools 是安全经典在AI领域的直接映射。
+明确“不能做什么”比定义“能做什么”更能保障系统安全，防止恶意代码或幻觉导致的越权操作。
+
+### 3.12.5 开放标准
+生态愿景：声明式、自包含、知识本位
+Anthropic 将Skills作为Agent Skills 的开放标准规范推广，自2025-12 分布以来，主流Agent平台均已提供远程支持。
+
+Skills 成功的三大本质属性：
+* **声明式**：纯Markdown格式，任何大模型均可读取和理解，无黑盒二进制；
+* **自包含**：一个文件夹即包含全部所需，复制即安装，无需复杂的依赖管理；
+* **知识本位**：核心价值在于内容本身而非特定格式，不绑定单一平台；
+

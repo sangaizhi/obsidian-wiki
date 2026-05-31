@@ -23,7 +23,12 @@
 - [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]]：并行工具调用、后台任务、任务通知和输出文件的执行机制。
 - [[concepts/概念_渐进式披露|渐进式披露]]：Skill 的三层图书馆加载模型（编目→目录→精读），description 预算机制与静默排除风险。
 - [[concepts/概念_Skill触发机制|Skill 触发机制]]：双通道激活（显式调用 + 语义匹配），description 三要素公式（What + When + Not for），过触发欠触发诊断。
-- [[concepts/概念_Skill工程设计|Skill 工程设计]]：目录规范（kebab-case + SKILL.md 大写）、元数据三维度、路由器思维、契约式引用、500 行法则。
+- [[concepts/概念_Skill工程设计|Skill 工程设计]]：目录规范（kebab-case + SKILL.md 大写）、元数据三维度、路由器思维、契约式引用、500 行法则、作用域与优先级。
+- [[concepts/概念_Skill动态上下文|Skill 动态上下文]]：$ARGUMENTS 变量 + `!`command`` 动态 Shell 注入，allowed-tools 安全围栏。
+- [[concepts/概念_Skill设计模式|Skill 设计模式]]：模板驱动、脚本增强、知识分层、工具隔离四种设计模式及决策树。
+- [[concepts/概念_Skill实战案例|Skill 实战案例]]：代码审查 Skill（安全→性能→质量三级） + 智能提交 Skill（任务型+动态注入）。
+- [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]]：触发测试（≥90%/+≤5%）、功能测试、性能对比（5次A/B），修正即写入的迭代闭环。
+- [[concepts/概念_Skill与软件工程|Skill 与软件工程]]：关注点分离、依赖倒置、惰性加载、最小权限、开放标准五大原则。
 
 ## 比较
 
@@ -128,7 +133,7 @@
 - [[sources/来源_Agent上下文管理策略|来源：Agent 上下文管理策略]]：context rot、上下文卸载、可逆压缩、子 Agent 隔离和 KV cache 策略。
 - [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]：Sub-agent 使用边界、内置子 Agent 与 Agent Teams 协作模型。
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]：并行工具调用、后台执行、任务通知和 TaskOutput 误区。
-- [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]：Claude.md vs Skills 两种知识维度、Skill 工程化结构、渐进式披露、触发机制、正文设计原则全链路拆解。
+- [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]：全文 12 节全链路拆解：知识维度、工程结构、渐进披露、触发机制、动态上下文、设计模式、实战案例、测试迭代、软件工程五大原则。
 - [[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]：GitHub Spec Kit 的 SDD 工作流、适用场景与 Vibe Coding 对比。
 
 ## 生活

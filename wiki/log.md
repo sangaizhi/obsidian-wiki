@@ -1,4 +1,18 @@
-## [2026-05-25] ingest | raw/ai/ClaudeCode实战/Chapter 3 → wiki 全链路拆解
+## [2026-05-31] ingest | raw/ai/ClaudeCode实战/Chapter3 v2 → wiki 全 12 节拆解
+
+- 新建概念页（5 个）：
+  - `wiki/concepts/概念_Skill动态上下文.md` — §3.7 $ARGUMENTS 变量 + !`command` 动态 Shell 注入 + 安全围栏
+  - `wiki/concepts/概念_Skill设计模式.md` — §3.9 模板驱动、脚本增强、知识分层、工具隔离四种模式
+  - `wiki/concepts/概念_Skill实战案例.md` — §3.10 代码审查 Skill（三级优先级）+ 智能提交 Skill（任务型）
+  - `wiki/concepts/概念_Skill测试与迭代.md` — §3.11 触发/功能/性能三类测试 + 修正即写入闭环
+  - `wiki/concepts/概念_Skill与软件工程.md` — §3.12 SOC/依赖倒置/惰性加载/最小权限/开放标准五大原则
+- 更新现有页面（5 个）：
+  - `wiki/concepts/概念_Skill工程设计.md` — 新增 §3.8 作用域与优先级（四级层级 + 版本控制）
+  - `wiki/sources/来源_ClaudeCode实战_Skills工程实践.md` — 扩展为全文 12 节核心要点 + 9 个概念页关联
+  - `wiki/concepts/概念_Skill系统.md` — 新增 5 个概念页链接
+  - `wiki/index.md` — 新增 5 个概念条目 + 更新来源描述
+  - `wiki/log.md` — 本条记录
+- 覆盖本次更新全部 6 个新增章节（§3.7~§3.12）
 
 - 新建概念页（3 个）：
   - `wiki/concepts/概念_渐进式披露.md` — 三层图书馆模型、description 预算机制（上下文窗口 2%）、静默排除、"少而精"架构原则
