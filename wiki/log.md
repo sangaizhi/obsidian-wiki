@@ -1,3 +1,12 @@
+## [2026-06-11] ingest | raw/ai/ClaudeCode实战/Chapter4 §4.5 — Skills 与子智能体协作
+
+- 新建概念页：
+  - `wiki/concepts/概念_Skills与子智能体协作.md` — 两种原子模式（方向A：子智能体预加载Skill / 方向B：Skill派生子智能体），包含关系决定 System Prompt 控制权
+- 更新现有页面：
+  - `wiki/concepts/概念_Skill系统.md` — 新增协作模式入口
+  - `wiki/index.md` — 新增概念条目
+  - `wiki/log.md` — 本条记录
+
 ## [2026-05-31] ingest | raw/ai/ClaudeCode实战/Chapter3 v2 → wiki 全 12 节拆解
 
 - 新建概念页（5 个）：

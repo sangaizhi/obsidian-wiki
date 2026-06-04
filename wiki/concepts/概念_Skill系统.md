@@ -304,6 +304,7 @@ Skill 不是频繁改规则，而是**持续追加失败经验**。每次踩坑�
 - [[concepts/概念_Skill设计模式|Skill 设计模式]] — 模板驱动、脚本增强、知识分层、工具隔离
 - [[concepts/概念_Skill实战案例|Skill 实战案例]] — 代码审查 Skill + 智能提交 Skill
 - [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]] — 触发/功能/性能三类测试与迭代闭环
+- [[concepts/概念_Skills与子智能体协作|Skills 与子智能体协作]] — 两种原子模式：子智能体预加载Skill vs Skill派生子智能体
 - [[concepts/概念_Skill与软件工程|Skill 与软件工程]] — 五大软件工程原则映射
 
 ## 关联页面

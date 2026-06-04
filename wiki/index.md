@@ -29,6 +29,7 @@
 - [[concepts/概念_Skill实战案例|Skill 实战案例]]：代码审查 Skill（安全→性能→质量三级） + 智能提交 Skill（任务型+动态注入）。
 - [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]]：触发测试（≥90%/+≤5%）、功能测试、性能对比（5次A/B），修正即写入的迭代闭环。
 - [[concepts/概念_Skill与软件工程|Skill 与软件工程]]：关注点分离、依赖倒置、惰性加载、最小权限、开放标准五大原则。
+- [[concepts/概念_Skills与子智能体协作|Skills 与子智能体协作]]：两种原子模式（子智能体预加载Skill vs Skill派生子智能体），包含关系决定 System Prompt 控制权。
 
 ## 比较
 
