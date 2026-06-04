@@ -16,6 +16,8 @@ related:
   - "[[concepts/概念_工具调用|工具调用与执行]]"
 sources:
   - "[[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]"
+  - "[[sources/来源_SOUL|来源：SOUL — Hermes Agent 人格化]]"
+  - "[[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构对比]]"
 ---
 
 # Hermes Agent
@@ -61,4 +63,6 @@ K8s 部署三次会话演进：工具调用 12→9→6，错误 2→1→0。
 ## 相关来源
 
 - [[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]] — 原始文章
+- [[sources/来源_SOUL|来源：SOUL — Hermes Agent 人格化]] — 170 行 SOUL.md 让 Agent 从工具变合伙人
+- [[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构对比]] — 源码级架构对比分析
 - [[entities/项目_OpenClaw|OpenClaw 项目]] — 对比竞品

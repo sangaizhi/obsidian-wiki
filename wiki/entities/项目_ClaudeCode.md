@@ -27,6 +27,9 @@ sources:
   - "[[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]"
   - "[[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]"
   - "[[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]"
+  - "[[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]]"
+  - "[[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]]"
+  - "[[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]]"
 ---
 
 # Claude Code
@@ -78,6 +81,9 @@ Claude Code 的并行执行依赖流式工具块和安全性判断：工具块�
 - [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]] — Sub-agent、Agent Teams 与协作模式
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]] — 并行工具调用、后台执行和任务管理
 - [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]] — Claude.md vs Skills，Skill 工程化定义
+- [[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]] — Claude Code 技术原理深度问答
+- [[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]] — 950 行 Python 重现核心功能
+- [[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]] — 两万字源码核心机制详解
 - [[concepts/概念_工具调用|工具调用与执行]] — Claude Code 的工具设计哲学
 - [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]] — 多 Agent 机制拆解
 - [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]] — 并行与后台任务机制

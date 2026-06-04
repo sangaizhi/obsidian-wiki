@@ -8,6 +8,7 @@ tags:
 summary: "OpenClaw 是一个开源、自托管的 AI Agent 平台，280K+ GitHub Stars，三层架构，支持 20+ 消息渠道。"
 sources:
   - "raw/OpenClaw橙皮书_extracted.txt"
+  - "[[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构对比]]"
 updated: "2026-05-14"
 ---
 
@@ -81,6 +82,7 @@ updated: "2026-05-14"
 ## 关联页面
 
 - [[sources/来源_OpenClaw橙皮书|来源：OpenClaw橙皮书]]
+- [[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构对比]]
 - [[concepts/概念_AI_Agent|AI Agent]]
 - [[concepts/概念_Agent记忆|Agent 记忆]]
 - [[concepts/概念_工具调用|工具调用与执行]]

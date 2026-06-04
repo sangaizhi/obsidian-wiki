@@ -126,7 +126,16 @@
 - 更新索引：`wiki/index.md` 新增「生活 > 育儿」分类及 2 个条目
 - 注：此为 wiki 首个非 AI 主题的内容，索引新增「生活」分类
 
-## [2026-05-14] ingest | raw/知乎/2026-05-14 (第二批) → wiki
+## [2026-06-11] ingest | raw/知乎/2026-06-05/ ×14 篇 → wiki 批量导入
+
+- 新建来源摘要页（12 个）：SOUL配置、Agent与OS类比、Memory记忆机制、ClaudeCode技术原理、OpenClaw与Hermes架构、多Agent架构面试、ClaudeCode源码复现、ClaudeCode源码详解、Harness工程深度、Agent大厂面试题、Agent告警排查、Harness革命综述
+- 新建概念页（3 个）：概念_SOUL、概念_Agent演进类比、概念_Agent面试题
+- 更新现有（5 个）：概念_Agent记忆、概念_Harness工程、项目_ClaudeCode、项目_HermesAgent、项目_OpenClaw
+- 新建实体：工具_LLM开源工具箱
+- 更新 index.md + log.md
+- 跳过：数学哲学（非 AI）
+
+## [2026-06-11] ingest | raw/ai/ClaudeCode实战/Chapter4 §4.5 — Skills 与子智能体协作
 
 - 新建来源摘要页（3 个）：
   - `wiki/sources/来源_SpecCoding实战.md`
@@ -154,7 +163,16 @@
 - 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Perplexity Skill Design、Superpowers 节点，覆盖状态 25/25
 - 更新索引：`wiki/index.md` 新增 4 个条目（Superpowers 实体 + 3 个来源）
 
-## [2026-05-15] ingest | raw/知乎/2026-05-15 → wiki
+## [2026-06-11] ingest | raw/知乎/2026-06-05/ ×14 篇 → wiki 批量导入
+
+- 新建来源摘要页（12 个）：SOUL配置、Agent与OS类比、Memory记忆机制、ClaudeCode技术原理、OpenClaw与Hermes架构、多Agent架构面试、ClaudeCode源码复现、ClaudeCode源码详解、Harness工程深度、Agent大厂面试题、Agent告警排查、Harness革命综述
+- 新建概念页（3 个）：概念_SOUL、概念_Agent演进类比、概念_Agent面试题
+- 更新现有（5 个）：概念_Agent记忆、概念_Harness工程、项目_ClaudeCode、项目_HermesAgent、项目_OpenClaw
+- 新建实体：工具_LLM开源工具箱
+- 更新 index.md + log.md
+- 跳过：数学哲学（非 AI）
+
+## [2026-06-11] ingest | raw/ai/ClaudeCode实战/Chapter4 §4.5 — Skills 与子智能体协作
 
 - 新建来源摘要页：`wiki/sources/来源_ClaudeCode架构分析.md`
 - 新建实体页：`wiki/entities/项目_ClaudeCode.md`（Anthropic 官方 CLI 编程 Agent）

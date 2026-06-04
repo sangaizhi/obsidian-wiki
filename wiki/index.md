@@ -30,6 +30,9 @@
 - [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]]：触发测试（≥90%/+≤5%）、功能测试、性能对比（5次A/B），修正即写入的迭代闭环。
 - [[concepts/概念_Skill与软件工程|Skill 与软件工程]]：关注点分离、依赖倒置、惰性加载、最小权限、开放标准五大原则。
 - [[concepts/概念_Skills与子智能体协作|Skills 与子智能体协作]]：两种原子模式（子智能体预加载Skill vs Skill派生子智能体），包含关系决定 System Prompt 控制权。
+- [[concepts/概念_SOUL|SOUL.md 配置]]：170 行 SOUL.md 让 Hermes Agent 从听话工具变成主动扛事合伙人。
+- [[concepts/概念_Agent演进类比|Agent 演进类比]]：Agent 系统架构类比 OS 内核/进程/文件系统/Runtime 的演进映射。
+- [[concepts/概念_Agent面试题|Agent 面试题]]：Agent 大厂高频面试题系统拆解与图解。
 
 ## 比较
 
@@ -106,6 +109,7 @@
 - [[entities/项目_GitHubSpecKit|GitHub Spec Kit 项目]]：规格驱动开发工具流，用 constitution/spec/plan/tasks 将意图细化为实现。
 - [[entities/工具_Superpowers|Superpowers 工具]]：开源 AI 编程工作流插件，强制执行 TDD，适配 Claude Code/Codex/Gemini 等。
 - [[entities/插件_Claudian|Claudian 插件]]：Obsidian 侧边栏 AI 编程代理，支持行内编辑和 Plan Mode。
+- [[entities/工具_LLM开源工具箱|LLM 开源工具箱]]：做 LLM 应用半年攒的 5 件套开源工具链。
 
 ## 来源摘要
 
@@ -136,6 +140,19 @@
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]：并行工具调用、后台执行、任务通知和 TaskOutput 误区。
 - [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]：全文 12 节全链路拆解：知识维度、工程结构、渐进披露、触发机制、动态上下文、设计模式、实战案例、测试迭代、软件工程五大原则。
 - [[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]：GitHub Spec Kit 的 SDD 工作流、适用场景与 Vibe Coding 对比。
+- [[sources/来源_SOUL|来源：SOUL — Hermes Agent 人格化]]：170 行 SOUL.md 让 Agent 从听话工具变主动扛事合伙人。
+- [[sources/来源_Agent演进类比|来源：Agent 演进类比]]：Agent 系统类比 OS 和 Cloud Runtime 演进路径。
+- [[sources/来源_Memory记忆机制综述|来源：Memory 记忆机制综述]]：AI Agent Memory 记忆机制全景综述。
+- [[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]]：Claude Code 技术原理深度问答。
+- [[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构]]：源码级 AI Agent 架构对比分析。
+- [[sources/来源_多Agent架构面试|来源：多 Agent 架构面试]]：通信、编排、Tool 取舍与工程代价。
+- [[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]]：950 行 Python 重现 Claude Code 核心功能。
+- [[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]]：两万字源码核心机制详解。
+- [[sources/来源_HarnessEngineering深度解读|来源：Harness Engineering 深度解读]]：万字深度理解 Harness Engineering。
+- [[sources/来源_Agent大厂面试题|来源：Agent 大厂面试题]]：万字长文图解 Agent 大厂面试题。
+- [[sources/来源_Agent告警排查|来源：Agent 告警排查]]：LLM Agent 重构告警排查流程实践。
+- [[sources/来源_Harness革命综述|来源：Harness 革命综述]]：万字综述 Harness 革命。
+- [[sources/来源_LLM开源工具箱|来源：LLM 开源工具箱]]：5 件套 LLM 开发开源工具链。
 
 ## 生活
 
