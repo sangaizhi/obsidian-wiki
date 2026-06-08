@@ -153,6 +153,10 @@
 - [[sources/来源_Agent告警排查|来源：Agent 告警排查]]：LLM Agent 重构告警排查流程实践。
 - [[sources/来源_Harness革命综述|来源：Harness 革命综述]]：万字综述 Harness 革命。
 - [[sources/来源_LLM开源工具箱|来源：LLM 开源工具箱]]：5 件套 LLM 开发开源工具链。
+- [[sources/来源_SpecCoding规范驱动实战|来源：Spec Coding 规范驱动实战]]：从 Vibe Coding 到 AI 代码规范的工程化转变。
+- [[sources/来源_Hermes7步优化|来源：Hermes 7 步优化]]：Token 省 80%+ 长期记忆优化。
+- [[sources/来源_上下文压缩策略对比|来源：上下文压缩策略对比]]：六大 Agent 上下文压缩横向拆解。
+- [[sources/来源_ContextEngineering实战|来源：Context Engineering 实战]]：记得对、做得准、跑得快。
 
 ## 生活
 

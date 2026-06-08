@@ -1,9 +1,9 @@
 {
   "collapse-filter": false,
   "search": "-path:index",
-  "showTags": false,
-  "showAttachments": false,
-  "hideUnresolved": false,
+  "showTags": true,
+  "showAttachments": true,
+  "hideUnresolved": true,
   "showOrphans": false,
   "collapse-color-groups": false,
   "colorGroups": [
@@ -20,18 +20,32 @@
         "a": 1,
         "rgb": 14069084
       }
+    },
+    {
+      "query": "path:raw/知乎  ",
+      "color": {
+        "a": 1,
+        "rgb": 6059222
+      }
+    },
+    {
+      "query": "path:raw/ai  ",
+      "color": {
+        "a": 1,
+        "rgb": 6084188
+      }
     }
   ],
   "collapse-display": false,
   "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "textFadeMultiplier": -0.4,
+  "nodeSizeMultiplier": 1.43984375,
+  "lineSizeMultiplier": 0.801822916666667,
   "collapse-forces": false,
   "centerStrength": 0.518713248970312,
   "repelStrength": 10,
   "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 1.6775280433208495,
-  "close": true
+  "linkDistance": 342,
+  "scale": 0.2292013594174923,
+  "close": false
 }

@@ -126,6 +126,12 @@
 - 更新索引：`wiki/index.md` 新增「生活 > 育儿」分类及 2 个条目
 - 注：此为 wiki 首个非 AI 主题的内容，索引新增「生活」分类
 
+## [2026-06-11] ingest | raw/知乎/2026-06-07 + 2026-06-08/ ×4 篇
+
+- 新建来源摘要页（4 个）：SpecCoding规范驱动实战、Hermes7步优化、上下文压缩策略对比、ContextEngineering实战
+- 更新实体页：项目_HermesAgent 新增 Hermes 7 步优化来源
+- 更新 index.md + log.md
+
 ## [2026-06-11] ingest | raw/知乎/2026-06-05/ ×14 篇 → wiki 批量导入
 
 - 新建来源摘要页（12 个）：SOUL配置、Agent与OS类比、Memory记忆机制、ClaudeCode技术原理、OpenClaw与Hermes架构、多Agent架构面试、ClaudeCode源码复现、ClaudeCode源码详解、Harness工程深度、Agent大厂面试题、Agent告警排查、Harness革命综述
@@ -162,6 +168,12 @@
   - `wiki/concepts/概念_Agent编排.md` — 新增多 Agent 协同设计（分工/通信/仲裁三维度、Supervisor 模式、消息模式、冲突策略）
 - 更新知识图谱：`wiki/overview/知识图谱.md` — 新增 Perplexity Skill Design、Superpowers 节点，覆盖状态 25/25
 - 更新索引：`wiki/index.md` 新增 4 个条目（Superpowers 实体 + 3 个来源）
+
+## [2026-06-11] ingest | raw/知乎/2026-06-07 + 2026-06-08/ ×4 篇
+
+- 新建来源摘要页（4 个）：SpecCoding规范驱动实战、Hermes7步优化、上下文压缩策略对比、ContextEngineering实战
+- 更新实体页：项目_HermesAgent 新增 Hermes 7 步优化来源
+- 更新 index.md + log.md
 
 ## [2026-06-11] ingest | raw/知乎/2026-06-05/ ×14 篇 → wiki 批量导入
 

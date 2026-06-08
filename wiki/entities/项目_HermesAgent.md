@@ -18,6 +18,7 @@ sources:
   - "[[sources/来源_HermesAgent|来源：Hermes Agent Self-Improving]]"
   - "[[sources/来源_SOUL|来源：SOUL — Hermes Agent 人格化]]"
   - "[[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构对比]]"
+  - "[[sources/来源_Hermes7步优化|来源：Hermes 7 步 Token 优化]]"
 ---
 
 # Hermes Agent
