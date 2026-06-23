@@ -10,7 +10,7 @@ tags:
   - architecture
 summary: "从软件工程五大原则审视 Skills 系统：关注点分离（CLAUDE.md/Skills/子智能体三层架构）、依赖倒置（description=接口契约）、惰性加载（渐进式披露）、最小权限（allowed-tools）、开放标准（声明式+自包含+知识本位）。揭示 Skills 成功背后的工程本质。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-31"
 ---
 

@@ -10,7 +10,7 @@ tags:
   - practical
 summary: "两个完整的 Skill 实战案例：代码审查 Skill（参考型，三级优先：安全→性能→质量，每项含等级/位置/建议四要素）和智能提交 Skill（任务型，disable-model-invocation + !`command` 动态注入 + allowed-tools 安全围栏）。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-31"
 ---
 

@@ -10,7 +10,7 @@ tags:
   - frontmatter
 summary: "Skill 的工程设计涵盖目录规范（kebab-case + SKILL.md 大写）、元数据三维度（触发/权限/运行时）、SKILL.md 正文的正确定位（路由器思维、契约式引用、500行法则）。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter 3授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-25"
 ---
 

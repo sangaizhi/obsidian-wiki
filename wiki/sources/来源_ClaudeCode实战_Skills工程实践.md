@@ -14,8 +14,8 @@ tags:
   - software-engineering
 summary: "Claude Code 实战系列第三章（全文 12 节）：Skills 工程实践全链路。从知识两维度、工程化结构、渐进式披露、触发机制，到动态上下文注入、4 种设计模式、2 个实战案例、测试迭代方法和软件工程五大原则映射。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
-updated: "2026-05-31"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
+updated: "2026-06-23"
 ---
 
 # 来源：Claude Code 实战 — Skills 工程实践

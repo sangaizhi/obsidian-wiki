@@ -20,7 +20,10 @@ related:
   - "[[concepts/概念_Harness工程|Harness Engineering]]"
   - "[[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]"
   - "[[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]]"
+  - "[[concepts/概念_ClaudeCodeHooks|Claude Code Hooks]]"
+  - "[[concepts/概念_Hook事件生命周期|Hook 事件生命周期]]"
   - "[[comparisons/ClaudeMD_vs_Skills|Claude.md vs Skills]]"
+  - "[[comparisons/ClaudeMD_Skills_Agent_Hooks|Claude.md vs Skills vs Agent vs Hooks]]"
   - "[[entities/插件_Claudian|Claudian 插件]]"
 sources:
   - "[[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]]"
@@ -30,6 +33,7 @@ sources:
   - "[[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]]"
   - "[[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]]"
   - "[[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]]"
+  - "[[sources/来源_ClaudeCode实战_Hook事件驱动自动化|来源：Claude Code Hook 事件驱动自动化]]"
 ---
 
 # Claude Code
@@ -75,6 +79,10 @@ Agent Teams 在此基础上加入 Team Lead、Teammates、mailbox、broadcast �
 
 Claude Code 的并行执行依赖流式工具块和安全性判断：工具块结束即可启动可执行工具，但是否并发取决于工具是否互相安全。后台任务则通过输出文件、通知和状态查询降低主上下文压力。
 
+### Hooks 事件驱动自动化
+
+Hooks 把 Claude Code 的约束从认知层下沉到系统执行层。`PreToolUse` 可在工具执行前 allow / deny / updateInput，`Stop` 可作为质量门控阻止未达标响应结束，`SessionStart` 和 `UserPromptSubmit` 可做环境初始化与上下文注入。
+
 ## 相关来源
 
 - [[sources/来源_ClaudeCode架构分析|来源：Claude Code 架构分析]] — 原始文章
@@ -84,8 +92,11 @@ Claude Code 的并行执行依赖流式工具块和安全性判断：工具块�
 - [[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]] — Claude Code 技术原理深度问答
 - [[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]] — 950 行 Python 重现核心功能
 - [[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]] — 两万字源码核心机制详解
+- [[sources/来源_ClaudeCode实战_Hook事件驱动自动化|来源：Claude Code Hook 事件驱动自动化]] — Hooks 定位、事件生命周期和执行层门控
 - [[concepts/概念_工具调用|工具调用与执行]] — Claude Code 的工具设计哲学
 - [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]] — 多 Agent 机制拆解
 - [[concepts/概念_ClaudeCode任务执行机制|Claude Code 任务执行机制]] — 并行与后台任务机制
+- [[concepts/概念_ClaudeCodeHooks|Claude Code Hooks]] — 事件驱动自动化与执行层强制约束
+- [[concepts/概念_Hook事件生命周期|Hook 事件生命周期]] — 会话、工具、子智能体和完成事件索引
 - [[entities/项目_OpenClaw|OpenClaw 项目]] — 同类项目对比
 - [[entities/项目_HermesAgent|Hermes Agent 项目]] — 同类项目对比

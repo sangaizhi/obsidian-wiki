@@ -8,8 +8,9 @@ tags:
 summary: "Claude Code 任务执行机制通过流式工具并行、并发安全调度、后台输出文件和任务通知降低 Agent 执行延迟并保持可追踪。"
 sources:
   - "raw/知乎/2026-05-15/Claude Code的并行、后台执行、任务管理与一些误区.md"
+  - "raw/ai/ClaudeCode实战/Chapter5 防微杜渐：Hook事件驱动自动化.md"
 created: "2026-05-17"
-updated: "2026-05-17"
+updated: "2026-06-23"
 ---
 
 # 概念：Claude Code 任务执行机制
@@ -37,11 +38,25 @@ Claude Code 不等模型整条消息输出完才执行工具，而是在 Anthrop
 - 任务完成时 `<task-notification>` 会携带 task-id、output-file、status 和 summary。
 - 新实践倾向于直接 Read output 文件，而不是依赖已废弃的 TaskOutput。
 
+## Hooks 控制点
+
+任务执行过程中的关键节点可由 Hooks 介入：
+
+- `PreToolUse`：在工具执行前做权限、风险和参数检查。
+- `PostToolUse` / `PostToolUseFailure`：在执行后追加检查结果或错误纠正反馈。
+- `PermissionRequest`：在权限确认前做自动批准或拒绝。
+- `Stop`：在整轮响应结束前做质量门控。
+
+这使任务执行机制不仅关注“如何跑得快”，也能在运行时保证“如何跑得稳、可审计、可阻断”。
+
 ## 关联页面
 
 - [[entities/项目_ClaudeCode|Claude Code 项目]]
 - [[concepts/概念_工具调用|工具调用与执行]]
 - [[concepts/概念_ClaudeCode多智能体|Claude Code 多智能体]]
+- [[concepts/概念_ClaudeCodeHooks|Claude Code Hooks]]
+- [[concepts/概念_Hook事件生命周期|Hook 事件生命周期]]
 - [[concepts/概念_Agent编排|Agent 编排]]
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]
+- [[sources/来源_ClaudeCode实战_Hook事件驱动自动化|来源：Claude Code Hook 事件驱动自动化]]
 

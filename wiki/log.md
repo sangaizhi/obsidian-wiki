@@ -1,3 +1,21 @@
+## [2026-06-23] ingest | raw/ai/ClaudeCode实战/Chapter5 — Hook 事件驱动自动化
+
+- 按 `TheSchema.md` 边界处理：`raw/` 只读，只创建和更新 `wiki/` 页面。
+- 新建来源摘要页：
+  - `wiki/sources/来源_ClaudeCode实战_Hook事件驱动自动化.md`
+- 新建概念页：
+  - `wiki/concepts/概念_ClaudeCodeHooks.md` — Hooks 执行层强制机制、安全门控、质量门控、上下文注入与审计。
+  - `wiki/concepts/概念_Hook事件生命周期.md` — 会话、工具调用、子智能体、完成、团队协作和 worktree 事件索引。
+- 新建比较页：
+  - `wiki/comparisons/ClaudeMD_Skills_Agent_Hooks.md` — Claude.md / Skills / Agent / Hooks 控制层级对比。
+- 更新现有页面：
+  - `wiki/entities/项目_ClaudeCode.md` — 新增 Hooks 事件驱动自动化小节和相关链接。
+  - `wiki/concepts/概念_Harness工程.md` — 将 Hooks 接入执行层 Guardrails。
+  - `wiki/concepts/概念_ClaudeCode任务执行机制.md` — 新增 Hooks 控制点。
+  - `wiki/overview/知识图谱.md` — 新增 Hooks、Hook 生命周期和控制层级比较节点，覆盖状态 34/34。
+  - `wiki/index.md` — 新增 2 个概念、1 个比较页和 1 个来源摘要入口。
+- 同步更新 Chapter3 已入库页面的 raw 来源路径：`Chapter3 授人以渔：Skills工程实践.md`。
+
 ## [2026-06-11] ingest | raw/ai/ClaudeCode实战/Chapter4 §4.5 — Skills 与子智能体协作
 
 - 新建概念页：

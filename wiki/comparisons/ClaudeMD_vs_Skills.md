@@ -9,7 +9,7 @@ tags:
   - comparison
 summary: "Claude.md 与 Skills 是 Claude Code 中两种互补的知识维度：Claude.md 承载常驻通用规则，Skills 承载按需专业领域知识。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter 3授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-25"
 ---
 

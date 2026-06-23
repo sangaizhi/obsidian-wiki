@@ -13,7 +13,8 @@ sources:
   - "raw/知乎/2026-05-14/AI编程能力边界探索：基于 Claude Code 的 Spec Coding 项目实战｜得物技术.md"
   - "raw/知乎/2026-06-05/万字干货：理解 Harness Engineering，看这一篇就够了.md"
   - "raw/知乎/2026-06-05/最新！万字综述Harness革命！.md"
-updated: "2026-06-05"
+  - "raw/ai/ClaudeCode实战/Chapter5 防微杜渐：Hook事件驱动自动化.md"
+updated: "2026-06-23"
 ---
 
 # 概念：Harness Engineering
@@ -122,6 +123,12 @@ Agent 从"有趣玩具"变为"可靠工具"的四大目标：
 6. **Session（会话连续性）**：运行时状态持久化机制
 
 ---
+
+## Claude Code Hooks：执行层 Guardrails
+
+Claude Code Hooks 是 Harness 中“物理门禁”的具体实现：Claude.md 和 Skills 仍是认知层建议，而 Hooks 在系统执行层监听事件并执行强制策略。`PreToolUse` 可以在工具执行前拒绝或改写危险输入，`PostToolUse` 可以把外部检查结果反馈给模型，`Stop` 可以作为质量门控阻止不合格响应结束。
+
+这让“不要删除敏感文件”“提交前必须 lint”“子智能体完成后必须审计”等规则从 Prompt 约束变成运行时机制。
 
 ## 控制平面与数据平面分离
 
@@ -271,6 +278,7 @@ Spec Coding（规格驱动编码）是 Harness 在开发流程层面的具体实
 - **Harness → 工具调用**：Checkerpoint、Evaluator 沙盒是工具调用的安全护栏
 - **Harness → Agent 编排**：编排是 Harness 在宏观层面的扩展
 - **Harness → Agent 演进类比**：Harness 是 Runtime Engineering 阶段的核心方法论
+- **Harness → Claude Code Hooks**：Hooks 是执行层 Guardrails 与事件驱动控制点
 
 ## 关联页面
 
@@ -282,4 +290,7 @@ Spec Coding（规格驱动编码）是 Harness 在开发流程层面的具体实
 - [[concepts/概念_Agent演进类比|Agent 演进类比]]
 - [[concepts/概念_SOUL|SOUL 主动性配置]]
 - [[concepts/概念_SpecCoding|Spec Coding]]
+- [[concepts/概念_ClaudeCodeHooks|Claude Code Hooks]]
+- [[concepts/概念_Hook事件生命周期|Hook 事件生命周期]]
 - [[sources/来源_Harness工程|来源：Harness Engineering]]
+- [[sources/来源_ClaudeCode实战_Hook事件驱动自动化|来源：Claude Code Hook 事件驱动自动化]]

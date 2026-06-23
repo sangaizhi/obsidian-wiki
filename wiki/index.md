@@ -30,14 +30,17 @@
 - [[concepts/概念_Skill测试与迭代|Skill 测试与迭代]]：触发测试（≥90%/+≤5%）、功能测试、性能对比（5次A/B），修正即写入的迭代闭环。
 - [[concepts/概念_Skill与软件工程|Skill 与软件工程]]：关注点分离、依赖倒置、惰性加载、最小权限、开放标准五大原则。
 - [[concepts/概念_Skills与子智能体协作|Skills 与子智能体协作]]：两种原子模式（子智能体预加载Skill vs Skill派生子智能体），包含关系决定 System Prompt 控制权。
+- [[concepts/概念_ClaudeCodeHooks|Claude Code Hooks]]：系统执行层事件拦截机制，用于安全门控、质量检查、上下文注入和审计。
+- [[concepts/概念_Hook事件生命周期|Hook 事件生命周期]]：会话、工具调用、子智能体、完成、团队协作和 worktree 事件索引。
 - [[concepts/概念_SOUL|SOUL.md 配置]]：170 行 SOUL.md 让 Hermes Agent 从听话工具变成主动扛事合伙人。
 - [[concepts/概念_Agent演进类比|Agent 演进类比]]：Agent 系统架构类比 OS 内核/进程/文件系统/Runtime 的演进映射。
 - [[concepts/概念_Agent面试题|Agent 面试题]]：Agent 大厂高频面试题系统拆解与图解。
 
 ## 比较
 
-- [[工作流_vs_Agent|工作流 vs Agent]]：工作流适合固定流程，Agent 适合动态决策；实践中应先工作流后 Agent，避免过度设计。
-- [[ClaudeMD_vs_Skills|Claude.md vs Skills]]：常驻通用规则 vs 按需专业领域知识，企业规章制度 vs SOP 操作手册的类比。
+- [[sources/来源_工作流_vs_Agent|工作流 vs Agent]]：工作流适合固定流程，Agent 适合动态决策；实践中应先工作流后 Agent，避免过度设计。
+- [[comparisons/ClaudeMD_vs_Skills|Claude.md vs Skills]]：常驻通用规则 vs 按需专业领域知识，企业规章制度 vs SOP 操作手册的类比。
+- [[comparisons/ClaudeMD_Skills_Agent_Hooks|Claude.md vs Skills vs Agent vs Hooks]]：常驻规范、按需工作流、任务委派和执行层强制门禁的控制层级对比。
 
 ## 知识图谱
 
@@ -139,20 +142,21 @@
 - [[sources/来源_ClaudeCode多智能体|来源：Claude Code 多智能体]]：Sub-agent 使用边界、内置子 Agent 与 Agent Teams 协作模型。
 - [[sources/来源_ClaudeCode并行后台任务管理|来源：Claude Code 并行后台任务管理]]：并行工具调用、后台执行、任务通知和 TaskOutput 误区。
 - [[sources/来源_ClaudeCode实战_Skills工程实践|来源：Claude Code Skills 工程实践]]：全文 12 节全链路拆解：知识维度、工程结构、渐进披露、触发机制、动态上下文、设计模式、实战案例、测试迭代、软件工程五大原则。
+- [[sources/来源_ClaudeCode实战_Hook事件驱动自动化|来源：Claude Code Hook 事件驱动自动化]]：Hooks 定位、事件生命周期、执行层拦截、质量门控和多智能体团队事件。
 - [[sources/来源_GitHubSpecKit入门|来源：GitHub Spec Kit 入门]]：GitHub Spec Kit 的 SDD 工作流、适用场景与 Vibe Coding 对比。
-- [[sources/来源_SOUL|来源：SOUL — Hermes Agent 人格化]]：170 行 SOUL.md 让 Agent 从听话工具变主动扛事合伙人。
-- [[sources/来源_Agent演进类比|来源：Agent 演进类比]]：Agent 系统类比 OS 和 Cloud Runtime 演进路径。
-- [[sources/来源_Memory记忆机制综述|来源：Memory 记忆机制综述]]：AI Agent Memory 记忆机制全景综述。
+- [[sources/来源_SOUL配置|来源：SOUL — Hermes Agent 人格化]]：170 行 SOUL.md 让 Agent 从听话工具变主动扛事合伙人。
+- [[sources/来源_Agent与OS类比|来源：Agent 演进类比]]：Agent 系统类比 OS 和 Cloud Runtime 演进路径。
+- [[sources/来源_Memory记忆机制|来源：Memory 记忆机制综述]]：AI Agent Memory 记忆机制全景综述。
 - [[sources/来源_ClaudeCode技术原理|来源：Claude Code 技术原理]]：Claude Code 技术原理深度问答。
 - [[sources/来源_OpenClaw与Hermes架构|来源：OpenClaw 与 Hermes 架构]]：源码级 AI Agent 架构对比分析。
 - [[sources/来源_多Agent架构面试|来源：多 Agent 架构面试]]：通信、编排、Tool 取舍与工程代价。
 - [[sources/来源_ClaudeCode源码复现|来源：Claude Code 源码复现]]：950 行 Python 重现 Claude Code 核心功能。
 - [[sources/来源_ClaudeCode源码详解|来源：Claude Code 源码详解]]：两万字源码核心机制详解。
-- [[sources/来源_HarnessEngineering深度解读|来源：Harness Engineering 深度解读]]：万字深度理解 Harness Engineering。
+- [[sources/来源_Harness工程深度|来源：Harness Engineering 深度解读]]：万字深度理解 Harness Engineering。
 - [[sources/来源_Agent大厂面试题|来源：Agent 大厂面试题]]：万字长文图解 Agent 大厂面试题。
 - [[sources/来源_Agent告警排查|来源：Agent 告警排查]]：LLM Agent 重构告警排查流程实践。
 - [[sources/来源_Harness革命综述|来源：Harness 革命综述]]：万字综述 Harness 革命。
-- [[sources/来源_LLM开源工具箱|来源：LLM 开源工具箱]]：5 件套 LLM 开发开源工具链。
+- [[entities/工具_LLM开源工具箱|工具：LLM 开源工具箱]]：5 件套 LLM 开发开源工具链。
 - [[sources/来源_SpecCoding规范驱动实战|来源：Spec Coding 规范驱动实战]]：从 Vibe Coding 到 AI 代码规范的工程化转变。
 - [[sources/来源_Hermes7步优化|来源：Hermes 7 步优化]]：Token 省 80%+ 长期记忆优化。
 - [[sources/来源_上下文压缩策略对比|来源：上下文压缩策略对比]]：六大 Agent 上下文压缩横向拆解。
@@ -162,5 +166,5 @@
 
 ### 育儿
 
-- [[月子中心_vs_月嫂|月子中心 vs 月嫂]]：月子中心省心专业，月嫂灵活便宜，异地家庭优先选月子中心。
+- [[sources/来源_月子中心vs月嫂|月子中心 vs 月嫂]]：月子中心省心专业，月嫂灵活便宜，异地家庭优先选月子中心。
 - [[sources/来源_月子中心vs月嫂|来源：月子中心 vs 月嫂]]：大冰关于月子中心与月嫂选择的建议。

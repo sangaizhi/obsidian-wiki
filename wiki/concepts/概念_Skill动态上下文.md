@@ -10,7 +10,7 @@ tags:
   - variables
 summary: "Skill 通过 $ARGUMENTS 变量和 !`command` 动态 Shell 注入机制，在执行时自动填充上下文数据（分支名、提交记录、文件变更），大幅减少 Agent 的探索性工具调用，需配合 allowed-tools 构建安全围栏防止命令注入。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-31"
 ---
 

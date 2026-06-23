@@ -10,7 +10,7 @@ tags:
   - semantic-matching
 summary: "Skill 触发机制决定 Skill 能否在恰当时机被激活。双通道设计（显式调用 + 语义匹配）配合 description 三要素公式（What + When + Not for），需要防止欠触发和过触发，并区分参考型与任务型两种 Skill。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter 3授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-25"
 ---
 

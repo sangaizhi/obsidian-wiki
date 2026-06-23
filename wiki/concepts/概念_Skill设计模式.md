@@ -9,7 +9,7 @@ tags:
   - engineering
 summary: "Skill 的 4 种设计模式：模板驱动（标准化输出）、脚本增强（确定性计算替代 LLM 推理）、知识分层（8/2 法则按需加载）、工具隔离（allowed-tools 划定能力边界）。通过决策树选择合适的模式组合。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-31"
 ---
 

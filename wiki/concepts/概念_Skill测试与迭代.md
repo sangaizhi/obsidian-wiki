@@ -10,7 +10,7 @@ tags:
   - iteration
 summary: "Skill 的三类核心测试方法：触发测试（10+/10- 用例，目标触发率≥90%，误触发率≤5%）、功能测试（输出格式/完整性/边界）、性能对比（5 次 A/B 测试对比 Token/修正次数/输出质量）。修正逻辑直接写入 SKILL.md 形成迭代闭环。"
 sources:
-  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔，Skills工程实践.md"
+  - "raw/ai/ClaudeCode实战/Chapter3 授人以渔：Skills工程实践.md"
 updated: "2026-05-31"
 ---
 
@@ -32,7 +32,7 @@ Skill 测试是确保 Skill 健壮性的工程实践。通过触发、功能和�
 | **不应触发用例** | 准备 10 个不应触发 Skill 的问题 |
 | **目标** | 相关任务触发率 ≥ **90%**，无关任务误触发率 ≤ **5%** |
 
-> 触发测试直接验证 description 的质量。若未达标，回到 [[概念_Skill触发机制|触发机制]] 优化 description 的三要素。
+> 触发测试直接验证 description 的质量。若未达标，回到 [[concepts/概念_Skill触发机制|触发机制]] 优化 description 的三要素。
 
 ### 二、功能测试
 
