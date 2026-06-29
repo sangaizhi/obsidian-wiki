@@ -264,3 +264,28 @@
   - `wiki/entities/项目_ClaudeCode.md` — 新增 Sub-agent、Agent Teams、并行与后台任务执行。
   - `wiki/overview/知识图谱.md` — 新增 Agent 训练、Claude Code 多智能体/任务执行、GitHub Spec Kit 节点，覆盖状态 31/31。
 - 更新索引：`wiki/index.md` 新增 3 个概念、1 个实体和 5 个来源摘要入口。
+
+## [2026-06-29] ingest | raw/知乎/2026-06-05 + 2026-06-07 + 2026-06-08 → 补全来源页 + 更新概念页
+
+- 按 `TheSchema.md` 边界处理：`raw/` 只读，只创建和更新 `wiki/` 页面
+- 新建来源摘要页（2 个）：
+  - `wiki/sources/来源_LLM开源工具箱.md` — 5件套 LLM 开发开源工具链
+  - `wiki/sources/来源_数学欧拉公式.md` — 欧拉公式深度推导（纯数学，非AI Agent主题）
+- 已有来源页（26 篇）：2026-06-05/07/08 批次文档已在前一轮 ingest 中创建了完善的 source 页面（含 frontmatter、要点提炼、关键引文、交叉引用）。本次确认状态良好，无需修改。
+- 更新概念页：
+  - `wiki/concepts/概念_上下文工程.md` — 新增五大策略族框架（Offload/Retrieve/Reduce/Isolate/Cache）、六大 Agent 上下文压缩横向对比（Claude Code/Codex/OpenCode/Cline/Cursor/Amp/MemGPT）、第一代压缩五大痛点、第二代共识（分层+渐进）、四级水位线方案、Context Engineering 实战要点
+  - `wiki/concepts/概念_Harness工程.md` — 前一轮已更新至最新状态，包含 R.E.S.T 模型、8 阶段 SOP、30 年软件工程演进、Harness 六大组件等
+- 更新概述页：
+  - `wiki/overview/主题_Agent入门综述.md` — 更新为六模块框架，新增 Harness Engineering 在 2026 年的战略地位，补充多 Agent 协作模块和学习路径
+- 更新索引：`wiki/index.md` 已在前一轮更新，包含全部 28 篇来源摘要入口、概念页、实体页
+
+## [2026-06-29] ingest | raw/ai/ → 补全 Chapter4 子智能体来源页 + 充实多智能体概念页
+
+- 按 `TheSchema.md` 边界处理：`raw/` 只读，只创建和更新 `wiki/` 页面
+- `raw/ai/agent/` 下的基础文章（0/5/6/7/8）已全部在前一轮 ingest 中覆盖到 source 和 concept 页，本次确认状态良好。
+- `raw/ai/ClaudeCode实战/Chapter3`（Skills 工程实践）和 `Chapter5`（Hook 事件驱动）已有完善 source + concept 页。
+- 新建来源摘要页（1 个）：
+  - `wiki/sources/来源_ClaudeCode实战_子智能体与任务委派.md` — Chapter4 核心内容：子智能体三大价值（隔离/约束/复用）、YAML 元数据 6 字段、Skills 与子智能体两种组合模式（方向A 预加载 vs 方向B fork 派生）、职责划分原则、启用决策四维度
+- 充实概念页（1 个）：
+  - `wiki/concepts/概念_ClaudeCode多智能体.md` — 从 2,081 字节扩充至完整版，新增子智能体核心机制（三大价值/定义配置/YAML 字段详解/执行过程）、三个实战示例（代码审查/测试运行/日志分析）、Skills 组合两种模式详解、职责划分原则、启用决策四维度
+- assets/ 下的 Markdown 描述文件（路由器思维.md、决策树.md、执行过程.excalidraw.md 等）内容已在先前 ingest 中融入对应概念页（概念_Skill设计模式、概念_Skills与子智能体协作 等），无需独立 source 页
