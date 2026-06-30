@@ -319,7 +319,7 @@ Hook的输出格式使用嵌套在 `hookSepcificOutput`对象中的`permissionDe
 * `systemMessage`：该字段的内容将直接显示给用户，而不会传递给 Claude。
 
 
-## 5.6 工程实战：安全方式体系
+## 5.6 工程实战一：安全防护体系
 
 使用Hooks构建一套完整的安全防范体系，通过以下3道防线进行安全防护。
 * 危险命令拦截：block-dangerous
@@ -334,90 +334,47 @@ Hook的输出格式使用嵌套在 `hookSepcificOutput`对象中的`permissionDe
 * 每一次拦截操作都附带清晰、具体的原因说明。
 ```shell
 #!/bin/bash
-
 # ./claude/hooks/block-dangegous.sh
-
 set -e
-
 INPUT=${cat}
-
 # 提取命令（调试信息输出值 stderr）
-
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command' // ""')
-
 echo "DEBUG: Checking command: $COMMAND" >&2
-
 # 危险命令模式列表
-
 DANGEROUS_PATTERNS=(
-
   "rm -rf /"
-
   "rm -rf ~"
-
   "rm -rf \$HOME"
-
   "> dev/sd"
-
-  "dd if="
-
   "mkfs."
-
   ":(){:|:&};:"  # fork bomb（Fork 炸弹）
-
   "chmod -R 777 /"
-
   "git push --force origin main"
-
   "git push --force origin master"
-
   "git reset --hard origin"
-
   "DROP DATABASE"
-
   "DROP TABLE"
-
   "TRUNCATE"
-
   "curl.* | bash"
-
   "curl.* | sh"  # 危险的管道执行
-
 )
 
-
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
-
   if [[ "$COMMAND" == *"$pattern"* ]]; then
-
     echo "BLOCKED: Dangerous command detected: '$COMMAND'" >&2
-
     cat <<EOF
-
 {
-
     "hookSpecificOutput":{
-
         "hookEventName": "PreToolUse",
-
         "permissionDecision": "deny",
-
         "permissionDecisionReason": "Dangerous command detected: '$COMMAND'"
-
         }
-
 }
-
 EOF
-
     exit 2
-
   fi
-
 done
-
 echo '{"hookSpecificOutput":{"hookEventName": "PreToolUse","permissionDecision": "allow"}}'
-
 exit 0
 ```
 
@@ -592,9 +549,217 @@ exit 0
 这套配置构建了一个涵盖“事前拦截、事中防护、事后审计”的完整安全闭环。
 
 
+## 5.7 工程实战二：代码质量自动化
+
+安全防护是”防患于未然“，但是代码质量则侧重于”确保卓越交付“。
+
+### 5.7.1 PostToolUse：自动格式化
+
+每次Claude写入文件后，系统自动触发格式化工具。使用该工具，Claude模型不需要感知项目具体采用何种格式化规范，只需要专注代码逻辑。
+```shell
+#! /bin/bash
+# .claude/hooks/auto-format.sh
+
+set -e
+INPUT=${cat}
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path' // ""')
+if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
+  echo '{}'
+  exit 0
+fi  
+
+EXTENSION="${FILE_PATH##*.}"
+case "$EXTENSION" in
+    js|jsx|ts|tsx|json|md|css|scss|html|vue)
+        if command -v npx >/dev/null 2>&1; then
+            npx prettier --write "$FILE_PATH" 2>/dev/null
+            echo '{"hookSpecificOutput":{"additionalContext":"已用 Prettier 格式化"}}'
+        fi
+        ;;
+    py)
+        if command -v black &> /dev/null; then
+            black "$FILE_PATH" 2>/dev/null
+            echo '{"hookSpecificOutput":{"additionalContext":"已用 Black 格式化"}}'
+        fi
+        ;;
+    go)
+        if command -v gofmt &> /dev/null; then
+            gofmt -w "$FILE_PATH" 2>/dev/null
+            echo '{"hookSpecificOutput":{"additionalContext":"已用 gofmt 格式化"}}'
+        fi
+        ;;
+    *)
+        echo '{}'
+        ;;
+esac
+exit 0
+```
+
+脚本中引入了`command -v`进行环境检查。如果检测到格式化工具未安装，Hook将静默跳过而非抛出错误。这体现了”优雅降级“的设计原则：Hook自身的异常不应该阻塞核心工作流的正常运行。
+
+### 5.7.2 PostToolUse：Lint反馈循环
+
+Lint 检查可以保证代码的”正确“，利用`additionalContext`将Lint检查结果反馈给Claude，从而构建起”修改—>检查—>反馈—>修复“的自动化闭环
+
+```shell
+#! /bin/bash
+# .claude/hooks/lint-check.sh
+
+set -e
+INPUT=${cat}
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path' // ""')
+if [["$FILE_PATH" == *.js || "$FILE_PATH" == *.jsx || "$FILE_PATH" == *.ts || "$FILE_PATH" == *.tsx || "$FILE_PATH" == *.json || "$FILE_PATH" == *.css || "$FILE_PATH" == *.scss || "$FILE_PATH" == *.html || "$FILE_PATH" == *.vue ]]; then
+    LINT_RESULT=$(npx eslint --fix "$FILE_PATH" 2>&1) || true
+    if [ $? -ne 0 ]; then
+        ESCAPED=$(echo "$LINT_RESULT" | head -30 | jq -Rs '.')
+        echo "{\"hookSpecificOutput\":{\"additionalContext\":\"ESLint 发现问题 \n${ESCAPED}\"}}"
+    else
+        echo '{"hookSpecificOutput":{"additionalContext":"ESLint 检查通过"}}'
+    fi
+else
+    echo "{}"
+fi
+```
+
+当Claude完成JavaScript/TypeScript 文件的修改后，如果触发Lint错误，脚本自动将错误详情注入到 `additionalContext`。Calude读取到该上下文后，将自动分析并修复问题。整个流程不需要人工干预，实现了从代码生成到质量达标的全自动迭代。
+
+### 5.7.3 Stop Hook：测试指令门控
+
+`Stop` Hook是质量保证的一道防线：当Claude宣称任务完成是，自动触发测试套件。如果测试失败，系统将阻止绘画结束并强制要求继续修复。
+```shell
+#! /bin/bash
+# .claude/hooks/run-tests.sh
+set -e
+INPUT=${cat}
+
+# 【关键机制】阻止无限循环：检查 stop_hook_active 标志
+# 如果该标志为true，说明已经重试过一次，本次必须放行以避免死锁
+STOP_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active // false')
+if [ "$STOP_ACTIVE" == "true" ]; then
+    exit 0 # 终止拦截，允许claude停止
+fi
+
+# 切换到项目目录
+if [ -n "$CLAUDE_PROJECT_DIR" ]; then
+    cd "$CLAUDE_PROJECT_DIR"
+fi  
+
+#检查项目类型并运行测试
+TEST_PASSED=true
+TEST_RESULT=""
+if [ -f "package.json" ] && grep -q '"test"' package.json; then
+    TEST_RESULT=$(npm test 2>&1) || TEST_PASSED=false
+elif [ -f "pyptoject.toml" ] || [ -f "pytest.ini" ]; then
+    TEST_RESULT=$(pytest 2>&1) || TEST_PASSED=false
+elif [ -f "go.mod" ]; then
+    TEST_RESULT=$(go test ./... 2>&1) || TEST_PASSED=false  
+else
+    echo '{"hookSpecificOutput":{"additionalContext":"未检测到已配置的测试框架，跳过测试"}}'
+    exit 0
+fi
+  
+if [ "$TEST_PASSED" = true ]; then
+    echo '{"hookSpecificOutput":{"additionalContext":"所有测试通过"}}'
+else
+    # 截取前50行错误日志并转义
+    TEST_ESCAPED=$(echo "$TEST_RESULT" | head -50 | jq -Rs '.')
+    # 返回 block决策，强制claude继续工作
+    cat <<EOF
+{  
+"decision": "block",
+"reason": "测试失败，请修复后再停止",
+"hookSpecificOutput": {
+        "additionalContext":${TEST_ESCAPED}
+    }
+}
+EOF
+fi
+exit 0
+```
+
+`stop_hook_active`字段不是防止系统陷入“死循环”的关键，其逻辑类似于递归函数的终止条件。当 Stop Hook执行失败时，若系统尝试修复并再次触发该Hook，stop_hook_active 将被设置为true。随后，脚本检测到该标志就放行，从而退出循环。就像递归函数必须设定终止条件，Stop Hook 也必须具备明确的退出机制。
+## 5.8 子智能体 Hooks：精准的上下文管理
+
+子智能体通过隔离上下文来实现任务委派。Hooks系统为此提供两种专属事件`SubagentStart`和`SubagentStop`。然后，更为关键的是第三种机制：直接在子智能体的`Frontmatter`中定义Hooks。
+
+### 5.8.1 全局与 Frontmatter：精度问题
+
+假如我们有一个名为 `db-reader`的子智能体，用于执行SQL查询。如果需要审查这个子智能体执行的每一条 Bash 命令来防止SQL注入风险，在全局的 `setting.json`中配置Hook并非最佳方案。因为全部配置会无差别·的拦截所有 Bash 命令，这样容易浪费系统性能，引发误拦截。所有，更优的方案实在子智能体的Frontmatter 中定义 Hook。
+```markdown
+---
+name: db-reader
+description: 只读数据库分析工具
+tools: Read,Grep,Glob,Bash
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: "./.claude/hooks/check-sql-injection.sh"
+  Stop:
+    - hooks:
+        - type: prompt
+          prompt: "检查查询结果是否包含PII(如姓名、邮箱、手机号)。如果包含，请回复ok:false，并要求进行脱敏处理"
+---
+你是一名数据库分析专家。仅执行SELECT查询，严禁执行任何修改数据的SQL语句。
+```
+
+采用 Frontmatter 定义 Hook的核心优势在于生命周期紧密绑定：Hook随智能体的启动而激活，并在完成任务后自动清理。此外，配置与子智能体定义集成与同一文件中，可随 md 文件一同分发，用户不需要额外修改全局 setting.json。
+
+### 5.8.2 SubagentStart：自动注入上下文
+
+SubagentStart Hook的典型应用实在子智能体启动时动态注入团队规范。例如，每当启动 code-reviewer 子智能体时，系统可自动注入团队的编码标准。
+```json
+{
+	"hooks": {
+		"SubagentStart": [
+			{
+				"mather": "code-reviewer",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "echo '\"hookSepcificOutput\":{\"hookEventName\": \"SubagentStart\", \"additionalContext\":\"团队编码规范：使用 camelCase命名,行长上限100个字符，公共API必须包哈JSDoc注释\"}}'"
+					}
+				]
+			}
+		]
+	}
+}
+```
+
+### 5.8.3 SubagentStop：验证输出质量
+
+SubagentStop Hook 可用于验证子智能体的工作成功是否达标。通过结合 `agent_transcript_path`读取子智能体的完整交互记录，系统能执行细粒度的质量验收。
+
+```shell
+#! /bin/bash
+# .claude/hooks/verify-review-quality.sh
+INPUT=${cat}
+AGENT_TYPE=$(echo "$INPUT" | jq -r '.agent_type')
+STOP_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active')
+
+# 仅验证 code-review 子智能体
+if [ "$AGENT_TYPE" != "code-reviewer" ]; then exit 0; fi
+
+# 防止死循环（若当前已是 Stop Hook触发阶段，则跳过）
+if [ "$STOP_ACTIVE" == "true" ]; then exit 0; fi
+
+TRANSCRIPT=$(echo "$INPUT" | jq -r '.agent_transcript_path')
+if [ -f "$TRANSCRIPT" ]; then
+    HAS_ISSUES=$(grep -c "issue\|问题\|bug" "$TRANSCRIPT" || true)
+    HAS_SUGGESTIONS=$(grep -c "suggest\|建议\|recommend" "$TRANSCRIPT" || true)
+    if [ "$HAS_ISSUES" -gt 0 ] && [ "$HAS_SUGGESTIONS" -eq 0 ]; then
+        echo '{"decision":"block","reason":"代码审查中发现了问题但未提供修复建议，请补充每个问题的改进方案"}'
+        exit 0
+    fi
+fi
+exit 0
+```
 
 
-
+* Frontmatter Hook：负责内部自检，确保自智能自问“我的输出是否完整”
+* SubagentStart Hook：负责外部注入，在启动是赋予其必要的上下文
+* SubagentStop Hook：负责外部验收，在结束时严格核查“它的工作成功是否达标”
 
 
 
