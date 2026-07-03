@@ -761,10 +761,84 @@ exit 0
 * SubagentStart Hook：负责外部注入，在启动是赋予其必要的上下文
 * SubagentStop Hook：负责外部验收，在结束时严格核查“它的工作成功是否达标”
 
+## 5.9 异步Hooks：后台执行不阻塞
 
+ 默认情况下，Hook脚本的执行是同步阻塞的，Claude会暂停当前工作流，直至脚本执行完毕并返回结果。对于运行测试套件、调用外部API等耗时操作，同步阻塞会显著拖慢Claude的响应速度。
 
+通过`"async": true`可以让Hook再后台非阻塞执行。Claude 不需要等待期完成即可立即继续后续工作。当异步的 Hook 执行完毕后，其输出结果将再下一轮对话轮次中自动传递给Claude，工期参考或者处理。
 
+异步 Hook 的限制：
+* 类型限制：仅 `command`类型的 Hook 支持异步执行。 `prompt`和`agent`类型的 Hook 必须同步执行；
+* 拦截能力限制：异步 Hook 无法阻止当前操作，由于主流程在Hook启动的瞬间即已继续执行，异步Hook 失去了在操作发生前进行干预的时机。
 
+因此，异步 Hook 适用于日志记录、异步通知、后台数据验证、非关键性质量审计等“事后处理”的任务，不适用于需要实时阻断的安全审查。
+
+## 5.10 环境变量与调试
+
+### 5.10.1 Hooks可用的环境变量
+
+| 环境变量               | 作用域           | 核心用途                     |
+| ------------------ | ------------- | ------------------------ |
+| CLAUDE_PROJECT_DIR | 所有Hook        | 获取当前项目的根目录绝对路径           |
+| CLAUDE_SESSION_ID  | 所有Hook        | 当前会话的唯一标识符               |
+| CLAUDE_TOOL_NAME   | 所有Hook        | 触发当前Hook的工具名称            |
+| CLUADE_FILE_PATH   | 所有Hook        | 当前操作涉及的文件绝对路径<br>（若适用）   |
+| CLAUDE_ENV_FILE    | 仅SessionStart | 环境变量持久化文件的路径             |
+| CLAUDE_NOTICATION  | 仅Notification | 包含具体的通知消息内容              |
+| CALUDE_CODE_REMOTE | 所有Hook        | 布尔值标识<br>指示是否在远程Web环境中运行 |
+| CLAUDE_PLUGIN_ROOT | 仅Plugin Hook  | 插件安装的根目录路径               |
+
+### 5.10.2 调试 “三板斧”
+
+调试 Claude Hook 脚本的3中核心方法：
+* 将调试信息输出到 stderr
+	由于stdout专用于输出JSON决策结果，所有调试信息必须重定向值stderr。
+	```shell
+	echo "DEBUG: Checking file $FILE_PATH" >&2  # 调试信息
+	echo '{"decision": "allow"}' # JSON决策
+	```
+* 手动测试 Hook 脚本
+	通过构造模拟输入直接验证脚本逻辑
+	```shell
+	echo '{"tool_name": "Bash", "tool_input": {"command": "rm -rf /"}}' | ./.claude/hooks/block-dangrous.sh
+	echo "Exit code: $?"
+	```
+* 使用 `claude --debug`查看完整的Hook执行细节
+	调试模式将显示匹配的Hook列表、各脚本的执行耗时和返回结果。
+
+### 5.10.3 常见陷阱
+
+在使用 Hooks 的过程中，有2个经常被忽视的问题：
+* 问题1：若Shell配置文件（如：~/.zhsrc或~/.bashrc）包含无条件的`echo`语句（如用于输出欢迎信息），这些输出内容会污染标准输出（stdout），从而导致JSON解析失败。解决方式：使用 `[[ $- == *i*]]` 条件将这些 `echo`语句包裹起来，确保他们仅在交互Shell中执行。
+* 问题2：直接边界 setting.json 后，Hook 往往不会立即生效。这是因为 Claude Code 仅在启动时捕获配置快照，运行期间对文件的修改不会自动同步。如需要生效，用户需要在 `/hooks` 菜单中确认变更或者重启当前会话。
+
+## 5.11 工程设计方法论
+
+面对具体的自动化需求，设计Hook方案需要明确一下3个核心维度。
+
+* 拦截时机（事件选择）：
+	* 操作前拦截：选用`PreToolUse`或者`UserPromptSubmit`；
+	* 操作后拦截：选用 `PostToolUse`；
+	* 完成时检查：选用`Stop`或者`SubagentStop`;
+	* 生命周期管理：选用`SessionStart`或者`SessionEnd`；
+* 判断方式（类型选择）：
+	* 规则明确（如模式匹配、文件检查）：选用 `command`类型；
+	* 需要语义判断但输入充分：选用`prompt`类型；
+	* 需要深度代码分析：选用`agent`类型；
+* 配置作用域（位置选择）：
+	* 团队通用规范：配置于 ./claude/setting.json；
+	* 个人偏好设备：配置于 ~/.claude/setting.json；
+	* 子智能体专属检查：配置于子智能体的 `Frontmatter`；
+
+设计过程通常遵循"三步走"策略：
+	第一步，首先配置基于`PostToolUse` 事件且匹配器为 `matcher:"*"`的审计日志 hook，以此观察 claude 的实际工具调用模式，并积累数日的真实运行数据。
+	第二步，基于审计数据识别高风险操作模式，进而设计针对性的`PreToolUse`拦截规则。
+	第三步，逐步收紧拦截规则，同时始终保留日志记录功能，确保在发生误拦截时能够快速定位问题根源。
+
+	Hook 是团队级的基础设置，而非个人的实验玩具。在 .claude/setting.json 中配置的Hook将对所有克隆该仓库的成员生效。若成员不明原因被意外拦截，将严重阻碍工作流并引发挫败感。因此，无比遵循一下准则：
+	1. 在提交 Hook 配置前，必须与团队充分讨论并达成共识；
+	2. 每个拦截规则都必须附带清晰的原因说明，告知用户被拦截的具体原因；
+	3. 利用审计日志实时监控 Hook 的触发频率，以便及时发现并修复误拦截情况。
 
 
 

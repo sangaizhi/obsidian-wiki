@@ -11,7 +11,7 @@ summary: "Claude Code Hooks 是系统执行层的事件拦截机制，用于在�
 sources:
   - "raw/ai/ClaudeCode实战/Chapter5 防微杜渐：Hook事件驱动自动化.md"
 created: "2026-06-23"
-updated: "2026-06-23"
+updated: "2026-07-03"
 ---
 
 # 概念：Claude Code Hooks
@@ -61,6 +61,47 @@ Hooks 与 Claude.md、Skills、Agent 的差异在于控制层级：
 - **一致性**：把格式化、lint、审计、环境初始化变成自动执行的固定机制。
 - **可追溯**：ConfigChange、SessionEnd、SubagentStop 等事件可以记录配置变化和执行轨迹。
 - **多智能体治理**：SubagentStart/Stop、TeammateIdle、TaskCompleted 让团队式 Agent 运行可被观察和管理。
+
+## 三种处理器类型
+
+| 类型 | 确定性 | 适用场景 | 说明 |
+|------|--------|---------|------|
+| **command** | 最高 | 确定性规则 | Shell 脚本执行，通过退出码决策（0=放行，2=阻止，其他=异常） |
+| **prompt** | 中 | 语义判断 | 调用小模型（Haiku）单轮评估，遵循 JSON 输出格式（`{"ok": true/false}`） |
+| **agent** | 最低 | 多轮验证 | 启动子智能体深度分析，最多 50 轮 |
+
+选择原则：**能用 command 不用 prompt，能用 prompt 不用 agent**。确定性规则在速度和可靠性上永远优于大模型判断。
+
+## 输出协议
+
+Hook 通过 `hookSpecificOutput` 与 Claude 交互：
+
+- `permissionDecision`：allow（绕过）/ deny（阻止）/ ask（交由用户）
+- `additionalContext`：注入 Claude 上下文，构建自动反馈闭环
+- `continue=false`：紧急制动，终止所有处理
+- `updateInput`：PreToolUse 专属，静默修改工具参数（如危险命令加 --dry-run）
+
+## 子智能体 Hooks
+
+Hooks 可以通过三种方式与子智能体集成：
+
+- **Frontmatter Hook**：在子智能体 `.md` 文件的 YAML 中定义，生命周期与子智能体绑定，精度高于全局配置
+- **SubagentStart**：子智能体启动时注入上下文规范
+- **SubagentStop**：读取 `agent_transcript_path` 复盘子智能体完整工作记录，验证输出质量
+
+## 异步 Hooks
+
+通过 `"async": true` 实现后台非阻塞执行：
+
+- 仅 `command` 类型支持异步
+- 异步 Hook **无法阻止操作**，适合日志记录、通知、后台验证
+- 结果在下一轮对话中传递给 Claude
+
+## 工程设计"三步走"
+
+1. **全量审计**：先配置 PostToolUse + matcher:"*" 的审计日志，观察工具调用模式
+2. **针对性拦截**：基于数据识别高风险操作，设计 PreToolUse 规则
+3. **逐步收紧**：始终保留日志，确保误拦截可快速定位
 
 ## 使用边界
 

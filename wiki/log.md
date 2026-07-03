@@ -289,3 +289,20 @@
 - 充实概念页（1 个）：
   - `wiki/concepts/概念_ClaudeCode多智能体.md` — 从 2,081 字节扩充至完整版，新增子智能体核心机制（三大价值/定义配置/YAML 字段详解/执行过程）、三个实战示例（代码审查/测试运行/日志分析）、Skills 组合两种模式详解、职责划分原则、启用决策四维度
 - assets/ 下的 Markdown 描述文件（路由器思维.md、决策树.md、执行过程.excalidraw.md 等）内容已在先前 ingest 中融入对应概念页（概念_Skill设计模式、概念_Skills与子智能体协作 等），无需独立 source 页
+
+## [2026-07-03] ingest | raw/ai/ClaudeCode实战/Chapter5 §5.4~§5.11 — Hook 增量更新
+
+- 更新来源摘要页：
+  - `wiki/sources/来源_ClaudeCode实战_Hook事件驱动自动化.md` — 新增 §5.4~§5.11 完整内容：
+    - 三种处理器类型（command/prompt/agent）选择原则与退出码规范
+    - hookSpecificOutput 输出协议（permissionDecision/additionalContext/continue）
+    - 安全防护体系实战（危险命令拦截/敏感文件保护/全量审计）三道防线
+    - 代码质量自动化（Prettier 格式化/Lint 反馈循环/Stop 测试门控 + stop_hook_active 防死锁）
+    - 子智能体 Hooks（Frontmatter 定义/SubagentStart 注入/SubagentStop 验证）
+    - 异步 Hooks（async:true 仅 command 类型、无法阻止操作）
+    - 8 个环境变量 + 调试三板斧 + 常见陷阱（stdout 污染/配置热加载）
+    - 工程设计方法（三维度设计框架 + "三步走"策略）
+- 更新概念页（2 个）：
+  - `wiki/concepts/概念_ClaudeCodeHooks.md` — 新增三种处理器类型、输出协议、子智能体 Hooks、异步 Hooks、工程设计"三步走"
+  - `wiki/concepts/概念_Hook事件生命周期.md` — 新增"能否阻止"分类维度、常见陷阱（stop_hook_active 防死锁/stdout 污染/配置热加载）
+- 知识图谱覆盖状态保持 34/34（Hooks 节点已存在）

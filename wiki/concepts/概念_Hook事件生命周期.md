@@ -11,7 +11,7 @@ summary: "Hook 事件生命周期把 Claude Code 运行过程拆成会话、工�
 sources:
   - "raw/ai/ClaudeCode实战/Chapter5 防微杜渐：Hook事件驱动自动化.md"
 created: "2026-06-23"
-updated: "2026-06-23"
+updated: "2026-07-03"
 ---
 
 # 概念：Hook 事件生命周期
@@ -70,6 +70,20 @@ Hook 事件生命周期是 Claude Code 在运行过程中暴露的一组事件�
 - `PreToolUse` 每次工具调用前都会触发，`PermissionRequest` 只在需要权限确认时触发。
 - `SubagentStop` 能拿到主会话和子会话 transcript，是复盘子智能体质量的关键入口。
 - `Stop` 是质量门控入口，适合把“响应是否达标”从模型自评变成外部检查。
+
+## 能否阻止：关键分类维度
+
+在所有事件中，"能否阻止"决定了事件是用于控制流程还是仅用于观察记录：
+
+**具备阻止能力的事件**：PreToolUse、PermissionRequest、UserPromptSubmit、Stop、SubagentStop、TeammateIdle、TaskCompleted、ConfigChange、WorktreeCreate
+
+**只读事件**：PostToolUse、Notification、SubagentStart（可注入上下文但无法阻止执行）
+
+## 常见陷阱
+
+- **stop_hook_active 标志**：Stop/SubagentStop Hook 中必须实现防止死循环的退出机制。当 Hook 阻止结束后系统重试，该标志为 true，脚本应放行
+- **配置热加载**：修改 setting.json 后需重启会话或通过 `/hooks` 确认变更，Claude Code 仅在启动时捕获配置快照
+- **stdout 污染**：Shell 配置中的 echo 语句可能污染 stdout，导致 Hook 的 JSON 输出解析失败
 
 ## 关联页面
 
